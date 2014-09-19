@@ -1,0 +1,2 @@
+opps==0.2.6
+opps-feedcrawler==0.2.1
