@@ -27,6 +27,13 @@ class PoliticalParty(models.Model):
         upload_to=get_file_path, max_length=255,
         verbose_name=_('Image'), null=True, blank=True)
 
+    class Meta:
+        verbose_name = _('Political Party')
+        verbose_name_plural = _('Political Parties')
+
+    def __unicode__(self):
+        return '{0} {1}'.format(self.name, self.number)
+
 
 class Candidate(models.Model):
     name = models.CharField(_('Name'), max_length=150)
@@ -40,6 +47,13 @@ class Candidate(models.Model):
     image = models.FileField(
         upload_to=get_file_path, max_length=255,
         verbose_name=_('Image'), null=True, blank=True)
+
+    class Meta:
+        verbose_name = _('Candidate')
+        verbose_name_plural = _('Candidates')
+
+    def __unicode__(self):
+        return '{0} {1}'.format(self.name, self.number)
 
 
 class Election(models.Model):
@@ -55,7 +69,7 @@ class Election(models.Model):
 
     def __unicode__(self):
         return "Eleições {0} - {1} {2}".format(
-            self.year, self.get_job_display(), self.state)
+            self.year, self.get_job_display(), self.state or '')
 
 
 class Vote(models.Model):
@@ -68,3 +82,10 @@ class Vote(models.Model):
     @property
     def percent(self):
         return int((self.votes*100)/self.appured)
+
+    class Meta:
+        verbose_name = _('Vote')
+        verbose_name_plural = _('Votes')
+
+    def __unicode__(self):
+        return '{0} {1}'.format(self.Candidate, self.percent)
