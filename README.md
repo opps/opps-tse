@@ -16,5 +16,5 @@ In your django shell, do it:
 from opps.tse.tasks import populate_candidates
 
 # execute
-populate_condidates()
+populate_candidates()
 ```
