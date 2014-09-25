@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: opps-tse\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-09-25 11:13-0300\n"
+"POT-Creation-Date: 2014-09-25 19:14-0300\n"
 "PO-Revision-Date: 2014-09-24 22:00-0300\n"
 "Last-Translator:  Igor P. Leroy <ip.leroy@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/projects/p/opps-"
@@ -45,54 +45,82 @@ msgstr "Senador"
 msgid "President"
 msgstr "Presidente"
 
-#: models.py:22 models.py:35
+#: models.py:22 models.py:44
 msgid "Slug"
 msgstr "Slug"
 
-#: models.py:23 models.py:30
+#: models.py:23 models.py:39
 msgid "Name"
 msgstr "Nome"
 
-#: models.py:26 models.py:40
+#: models.py:25
+msgid "Number"
+msgstr "Número"
+
+#: models.py:28 models.py:50
 msgid "Image"
 msgstr "Imagem"
 
-#: models.py:31
+#: models.py:31 models.py:46
+msgid "Political Party"
+msgstr "Partido Político"
+
+#: models.py:32
+msgid "Political Parties"
+msgstr "Partidos Políticos"
+
+#: models.py:40
 msgid "Bio"
 msgstr "Biografia"
 
-#: models.py:33
+#: models.py:42
 msgid "Candidate Number"
 msgstr "Número do Candidato"
 
-#: models.py:44
+#: models.py:53 models.py:78
+msgid "Candidate"
+msgstr "Candidato"
+
+#: models.py:54
+msgid "Candidates"
+msgstr "Candidatos"
+
+#: models.py:61
 msgid "Year"
 msgstr "Ano"
 
-#: models.py:46
+#: models.py:63
 msgid "Job"
 msgstr "Cargo"
 
-#: models.py:48
+#: models.py:65
 msgid "State"
 msgstr "Estado"
 
-#: models.py:51
+#: models.py:68 models.py:77
 msgid "Election"
 msgstr "Eleição"
 
-#: models.py:52
+#: models.py:69
 msgid "Elections"
 msgstr "Eleições"
 
-#: models.py:61
+#: models.py:79
 msgid "Total Appured"
 msgstr "Total de votos apurados"
 
-#: models.py:62
+#: models.py:80
 msgid "Total Votes"
 msgstr "Total de votos"
 
-#: models.py:63
+#: models.py:81
 msgid "Turn"
 msgstr "Turno"
+
+#: models.py:88
+msgid "Vote"
+msgstr "Voto"
+
+#: models.py:89
+msgid "Votes"
+msgstr "Total de votos"

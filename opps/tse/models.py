@@ -43,7 +43,8 @@ class Candidate(models.Model):
     slug = models.SlugField(
         _('Slug'), db_index=True, max_length=150)
     political_party = models.ForeignKey(
-        'PoliticalParty', blank=True, null=True)
+        'PoliticalParty', verbose_name=_('Political Party'),
+        blank=True, null=True)
     image = models.FileField(
         upload_to=get_file_path, max_length=255,
         verbose_name=_('Image'), null=True, blank=True)
@@ -73,8 +74,8 @@ class Election(models.Model):
 
 
 class Vote(models.Model):
-    election = models.ForeignKey('Election')
-    candidate = models.ForeignKey('Candidate')
+    election = models.ForeignKey('Election', verbose_name=_('Election'))
+    candidate = models.ForeignKey('Candidate', verbose_name=_('Candidate'))
     appured = models.PositiveIntegerField(_('Total Appured'), default=0)
     votes = models.PositiveIntegerField(_('Total Votes'), default=0)
     turn = models.PositiveIntegerField(_('Turn'), default=1)
