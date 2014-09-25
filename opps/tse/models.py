@@ -21,6 +21,8 @@ JOBS = (
 class PoliticalParty(models.Model):
     slug = models.CharField(_('Slug'), max_length=10)
     name = models.CharField(_('Name'), max_length=150)
+    number = models.PositiveIntegerField(
+        _('Number'), blank=True, null=True)
     image = models.FileField(
         upload_to=get_file_path, max_length=255,
         verbose_name=_('Image'), null=True, blank=True)
