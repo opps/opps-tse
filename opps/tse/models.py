@@ -54,7 +54,8 @@ class Election(models.Model):
         verbose_name_plural = _('Elections')
 
     def __unicode__(self):
-        return "Eleições {0} - {1} {2}".format(self.year, self.job, self.state)
+        return "Eleições {0} - {1} {2}".format(
+            self.year, self.get_job_display(), self.state)
 
 
 class Vote(models.Model):
