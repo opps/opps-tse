@@ -58,8 +58,9 @@ class Election(models.Model):
 class Vote(models.Model):
     election = models.ForeignKey('Election')
     candidate = models.ForeignKey('Candidate')
-    appured = models.PositiveIntegerField(_('Total Appured'))
-    votes = models.PositiveIntegerField(_('Total Votes'))
+    appured = models.PositiveIntegerField(_('Total Appured'), default=0)
+    votes = models.PositiveIntegerField(_('Total Votes'), default=0)
+    turn = models.PositiveIntegerField(_('Turn'), default=1)
 
     @property
     def percent(self):

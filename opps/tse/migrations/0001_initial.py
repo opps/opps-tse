@@ -43,8 +43,9 @@ class Migration(SchemaMigration):
             (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
             ('election', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['tse.Election'])),
             ('candidate', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['tse.Candidate'])),
-            ('appured', self.gf('django.db.models.fields.PositiveIntegerField')()),
-            ('votes', self.gf('django.db.models.fields.PositiveIntegerField')()),
+            ('appured', self.gf('django.db.models.fields.PositiveIntegerField')(default=0)),
+            ('votes', self.gf('django.db.models.fields.PositiveIntegerField')(default=0)),
+            ('turn', self.gf('django.db.models.fields.PositiveIntegerField')(default=1)),
         ))
         db.send_create_signal(u'tse', ['Vote'])
 
@@ -90,11 +91,12 @@ class Migration(SchemaMigration):
         },
         u'tse.vote': {
             'Meta': {'object_name': 'Vote'},
-            'appured': ('django.db.models.fields.PositiveIntegerField', [], {}),
+            'appured': ('django.db.models.fields.PositiveIntegerField', [], {'default': '0'}),
             'candidate': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['tse.Candidate']"}),
             'election': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['tse.Election']"}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'votes': ('django.db.models.fields.PositiveIntegerField', [], {})
+            'turn': ('django.db.models.fields.PositiveIntegerField', [], {'default': '1'}),
+            'votes': ('django.db.models.fields.PositiveIntegerField', [], {'default': '0'})
         }
     }
 

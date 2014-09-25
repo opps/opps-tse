@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: opps-tse\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-09-24 22:08-0300\n"
+"POT-Creation-Date: 2014-09-25 11:13-0300\n"
 "PO-Revision-Date: 2014-09-24 22:00-0300\n"
 "Last-Translator:  Igor P. Leroy <ip.leroy@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/projects/p/opps-"
@@ -92,3 +92,7 @@ msgstr "Total de votos apurados"
 #: models.py:62
 msgid "Total Votes"
 msgstr "Total de votos"
+
+#: models.py:63
+msgid "Turn"
+msgstr "Turno"
