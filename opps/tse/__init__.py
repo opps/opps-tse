@@ -20,7 +20,18 @@ __license__ = "MIT"
 __copyright__ = "Copyright 2014, YACOWS"
 
 
+# default settings
+
 OPPS_TSE_ZIP_PATH = getattr(settings, 'OPPS_TSE_ZIP_PATH', '')
 OPPS_TSE_CANDIDATES_CSV_URL = getattr(
     settings, 'OPPS_TSE_CANDIDATES_CSV_URL',
-    'http://agencia.tse.jus.br/estatistica/sead/odsele/consulta_cand/consulta_cand_2014.zip')
+    'https://dl.dropboxusercontent.com/u/7206028/consulta_cand_2014.zip')
+
+OPPS_TSE_POLITICAL_PARTY_CSV = \
+    'https://dl.dropboxusercontent.com/u/7206028/partidos.csv'
+
+slugs = [
+    'GO', 'MT', 'MS', 'DF', 'AM', 'AC', 'RO', 'RR', 'AP', 'TO',
+    'PA', 'MA', 'PI', 'CE', 'RN', 'PB', 'PE', 'SE', 'AL', 'BA',
+    'SP', 'MG', 'RJ', 'ES', 'PR', 'SC', 'RS'
+]
