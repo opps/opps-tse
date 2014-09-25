@@ -1,0 +1,94 @@
+# Opps TSE.
+# Copyright (C) 2014
+# This file is distributed under the same license as the Opps package.
+# Igor P. Leroy <ip.leroy@gmail.com>, 2014.
+msgid ""
+msgstr ""
+"Project-Id-Version: opps-tse\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-09-24 22:08-0300\n"
+"PO-Revision-Date: 2014-09-24 22:00-0300\n"
+"Last-Translator:  Igor P. Leroy <ip.leroy@gmail.com>\n"
+"Language-Team: Portuguese (Brazil) (http://www.transifex.com/projects/p/opps-"
+"core/language/pt_BR/)\n"
+"Language: pt_BR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: models.py:11
+msgid "Councilman"
+msgstr "Vereador"
+
+#: models.py:12
+msgid "Mayor"
+msgstr "Prefeito"
+
+#: models.py:13
+msgid "State Representative"
+msgstr "Deputado Estadual"
+
+#: models.py:14
+msgid "Congressman"
+msgstr "Deputado Federal"
+
+#: models.py:15
+msgid "Governor"
+msgstr "Governador"
+
+#: models.py:16
+msgid "Senator"
+msgstr "Senador"
+
+#: models.py:17
+msgid "President"
+msgstr "Presidente"
+
+#: models.py:22 models.py:35
+msgid "Slug"
+msgstr "Slug"
+
+#: models.py:23 models.py:30
+msgid "Name"
+msgstr "Nome"
+
+#: models.py:26 models.py:40
+msgid "Image"
+msgstr "Imagem"
+
+#: models.py:31
+msgid "Bio"
+msgstr "Biografia"
+
+#: models.py:33
+msgid "Candidate Number"
+msgstr "Número do Candidato"
+
+#: models.py:44
+msgid "Year"
+msgstr "Ano"
+
+#: models.py:46
+msgid "Job"
+msgstr "Cargo"
+
+#: models.py:48
+msgid "State"
+msgstr "Estado"
+
+#: models.py:51
+msgid "Election"
+msgstr "Eleição"
+
+#: models.py:52
+msgid "Elections"
+msgstr "Eleições"
+
+#: models.py:61
+msgid "Total Appured"
+msgstr "Total de votos apurados"
+
+#: models.py:62
+msgid "Total Votes"
+msgstr "Total de votos"

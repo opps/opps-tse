@@ -23,7 +23,7 @@ class PoliticalParty(models.Model):
     name = models.CharField(_('Name'), max_length=150)
     image = models.FileField(
         upload_to=get_file_path, max_length=255,
-        verbose_name=_('Imqge'), null=True, blank=True)
+        verbose_name=_('Image'), null=True, blank=True)
 
 
 class Candidate(models.Model):
@@ -37,7 +37,7 @@ class Candidate(models.Model):
         'PoliticalParty', blank=True, null=True)
     image = models.FileField(
         upload_to=get_file_path, max_length=255,
-        verbose_name=_('Imqge'), null=True, blank=True)
+        verbose_name=_('Image'), null=True, blank=True)
 
 
 class Election(models.Model):
