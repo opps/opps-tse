@@ -52,6 +52,7 @@ class Candidate(models.Model):
     class Meta:
         verbose_name = _('Candidate')
         verbose_name_plural = _('Candidates')
+        ordering = ['name']
 
     def __unicode__(self):
         return '{0} {1}'.format(self.name, self.number)
