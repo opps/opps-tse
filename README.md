@@ -22,6 +22,9 @@ INSTALLED_APPS = [
 
 ```
 
+And run migrations.
+
+
 ### Populate database
 
 In your django shell, do it:
