@@ -89,4 +89,5 @@ class Vote(models.Model):
         verbose_name_plural = _('Votes')
 
     def __unicode__(self):
-        return '{0} {1}'.format(self.Candidate, self.percent)
+        return '{0} - {1} {2}%'.format(
+            self.election, self.candidate, self.percent)
