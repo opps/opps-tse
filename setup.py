@@ -6,7 +6,7 @@ from setuptools import setup, find_packages
 from opps import tse
 
 
-install_requires = ["opps==0.2.6", "requests>=2.2.0",
+install_requires = ["opps", "requests>=2.2.0",
                     "unidecode", "unicodecsv"]
 
 classifiers = ["Development Status :: 4 - Beta",
