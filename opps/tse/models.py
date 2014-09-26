@@ -83,7 +83,10 @@ class Vote(models.Model):
 
     @property
     def percent(self):
-        return int((self.votes*100)/self.appured)
+        try:
+            return int((self.votes*100)/self.appured)
+        except:
+            return 0
 
     class Meta:
         verbose_name = _('Vote')

@@ -7,26 +7,52 @@ import StringIO
 import unicodecsv as csv
 from unidecode import unidecode
 
-from opps.tse.models import PoliticalParty, Candidate
+from opps.tse.models import PoliticalParty, Candidate, Election
 
 from django.template.defaultfilters import slugify
 
 
 def format_candidates_csv(line):
-    print line
     try:
         pp = line[17].replace(' ', '')
     except:
         return False
+    print line
     pp = PoliticalParty.objects.get(slug=pp)
+    year = line[2]
+    state = line[5]
+    job = line[9]
+
+    if job == 'DEPUTADO ESTADUAL':
+        job = 'de'
+    if job == 'DEPUTADO FEDERAL':
+        job = 'df'
+    if job == 'GOVERNADOR':
+        job = 'g'
+    if job == 'SENADOR':
+        job = 's'
+    if job == 'PRESIDENTE':
+        job = 'ps'
+        state = ''
+
+    try:
+        if job == 'ps':
+            election = Election.objects.get(job=job, year=year)
+        else:
+            election = Election.objects.get(job=job, state=state, year=year)
+    except:
+        election = False
+
     bio = '{0} - Sexo: {1} - Escolaridade: {2}'.format(
         line[10], line[29], line[31])
     return {
         'name': line[13],
         'number': line[12],
         'political_party': pp,
-        'slug': slugify(line[13]),
+        'slug': slugify('{0}-{1}'.format(line[13], line[12])),
         'bio': bio,
+        'job': job,
+        'election': election,
     }
 
 
@@ -42,16 +68,17 @@ def parse_candidates_csv(url):
             if not candidate:
                 continue
             c, created = Candidate.objects.get_or_create(
-                number=candidate['number'])
+                number=candidate['number'], name=candidate['name'])
+            if c and candidate['election']:
+                c.vote_set.get_or_create(election=candidate['election'])
             try:
-                if created:
-                    c.name = candidate['name']
-                    c.bio = candidate['bio']
-                    c.political_party = candidate['political_party']
-                    c.slug = candidate['slug']
-                    c.save()
-            except:
-                pass
+                c.name = candidate['name']
+                c.bio = candidate['bio']
+                c.political_party = candidate['political_party']
+                c.slug = candidate['slug']
+                c.save()
+            except Exception, e:
+                print e
 
 
 def parse_party_csv(url):
