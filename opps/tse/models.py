@@ -37,7 +37,7 @@ class PoliticalParty(models.Model):
     u"""
         Sigla partidária
     """
-    
+
     name = models.CharField(
         verbose_name=_(u'Name'),
         max_length=150
@@ -45,7 +45,7 @@ class PoliticalParty(models.Model):
     u"""
         Nome do partido politico
     """
-    
+
     number = models.PositiveIntegerField(
         verbose_name=_(u'Number'),
         blank=True,
@@ -74,18 +74,64 @@ class PoliticalParty(models.Model):
 
 
 class Candidate(models.Model):
-    name = models.CharField(_('Name'), max_length=150)
-    bio = models.TextField(_('Bio'), blank=True, null=True)
+    u"""
+    Portuguese:
+    Classe model para salvar os candidatos
+
+    English:
+
+    Needs translate here
+    """
+    name = models.CharField(
+        verbose_name=_(u'Name'),
+        max_length=150
+    )
+    u"""
+        Nome do candidato
+    """
+    bio = models.TextField(
+        verbose_name=_(u'Bio'),
+        blank=True,
+        null=True
+    )
+    u"""
+        Biografia do candidato
+    """
     number = models.PositiveIntegerField(
-        _('Candidate Number'), blank=True, null=True)
+        verbose_name=_(u'Candidate Number'),
+        blank=True,
+        null=True
+    )
+    u"""
+        Número do candidato
+    """
     slug = models.SlugField(
-        _('Slug'), db_index=True, max_length=150)
+        verbose_name=_('Slug'),
+        db_index=True,
+        max_length=150
+    )
+    u"""
+        Slug do nome do candidato
+    """
     political_party = models.ForeignKey(
-        'PoliticalParty', verbose_name=_('Political Party'),
-        blank=True, null=True)
+        'PoliticalParty',
+        verbose_name=_(u'Political Party'),
+        blank=True,
+        null=True
+    )
+    u"""
+        Referencia o partido politico do candidato
+    """
     image = models.FileField(
-        upload_to=get_file_path, max_length=255,
-        verbose_name=_('Image'), null=True, blank=True)
+        upload_to=get_file_path,
+        max_length=255,
+        verbose_name=_(u'Image'),
+        null=True,
+        blank=True
+    )
+    u"""
+        Imagem do candidato
+    """
 
     class Meta:
         verbose_name = _('Candidate')
