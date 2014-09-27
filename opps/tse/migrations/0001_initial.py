@@ -29,6 +29,8 @@ class Migration(SchemaMigration):
             ('vice', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['tse.Candidate'], null=True, blank=True)),
             ('union', self.gf('django.db.models.fields.CharField')(max_length=200, null=True, blank=True)),
             ('political_party', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['tse.PoliticalParty'], null=True, blank=True)),
+            ('vice', self.gf('django.db.models.fields.CharField')(max_length=255)),
+            ('union', self.gf('django.db.models.fields.CharField')(max_length=200)),
             ('image', self.gf('django.db.models.fields.files.FileField')(max_length=255, null=True, blank=True)),
         ))
         db.send_create_signal(u'tse', ['Candidate'])
