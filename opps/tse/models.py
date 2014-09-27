@@ -19,13 +19,51 @@ JOBS = (
 
 
 class PoliticalParty(models.Model):
-    slug = models.CharField(_('Slug'), max_length=10)
-    name = models.CharField(_('Name'), max_length=150)
+    u"""
+    Portuguese:
+    Classe model para salvar os dados do partido
+    politico.
+
+    O campo slug refere-se a sigla partidária
+
+    English:
+
+    Needs translate here
+    """
+    slug = models.CharField(
+        verbose_name=_(u'Slug'),
+        max_length=10
+    )
+    u"""
+        Sigla partidária
+    """
+    
+    name = models.CharField(
+        verbose_name=_(u'Name'),
+        max_length=150
+    )
+    u"""
+        Nome do partido politico
+    """
+    
     number = models.PositiveIntegerField(
-        _('Number'), blank=True, null=True)
+        verbose_name=_(u'Number'),
+        blank=True,
+        null=True
+    )
+    u"""
+        Número da legenda partidaria
+    """
     image = models.FileField(
-        upload_to=get_file_path, max_length=255,
-        verbose_name=_('Image'), null=True, blank=True)
+        upload_to=get_file_path,
+        max_length=255,
+        verbose_name=_(u'Image'),
+        null=True,
+        blank=True
+    )
+    u"""
+        Bandeira do partido
+    """
 
     class Meta:
         verbose_name = _('Political Party')
