@@ -45,6 +45,8 @@ class Candidate(models.Model):
     political_party = models.ForeignKey(
         'PoliticalParty', verbose_name=_('Political Party'),
         blank=True, null=True)
+    vice = models.CharField(_('Vice'), max_length=255)
+    union = models.CharField(_('Union'), max_length=200)
     image = models.FileField(
         upload_to=get_file_path, max_length=255,
         verbose_name=_('Image'), null=True, blank=True)
@@ -64,6 +66,22 @@ class Election(models.Model):
     state = models.CharField(
         _('State'), max_length=2, blank=True, null=True, db_index=True)
 
+    # global stats for votes
+    valid_votes = models.PositiveIntegerField(
+        _('Valid Votes'), null=True, blank=True)
+    null_votes = models.PositiveIntegerField(
+        _('Null Votes'), null=True, blank=True)
+    pending_votes = models.PositiveIntegerField(
+        _('Pending Votes'), null=True, blank=True)
+
+    # global stats
+    total_attendance = models.PositiveIntegerField(
+        _('Total Attendance'), null=True, blank=True)
+    total_abstention = models.PositiveIntegerField(
+        _('Total Abstention'), null=True, blank=True)
+    total_voters = models.PositiveIntegerField(
+        _('Total Voters'), null=True, blank=True)
+
     class Meta:
         verbose_name = _('Election')
         verbose_name_plural = _('Elections')
@@ -80,6 +98,7 @@ class Vote(models.Model):
     appured = models.PositiveIntegerField(_('Total Appured'), default=0)
     votes = models.PositiveIntegerField(_('Total Votes'), default=0)
     turn = models.PositiveIntegerField(_('Turn'), default=1)
+    is_elected = models.BooleanField(default=False)
 
     @property
     def percent(self):
