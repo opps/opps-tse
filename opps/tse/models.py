@@ -113,6 +113,23 @@ class Candidate(models.Model):
     u"""
         Slug do nome do candidato
     """
+
+    vice = models.CharField(
+        verbose_name=_('Vice'),
+        max_length=255
+    )
+    u"""
+        Insere o vice do candidato
+    """
+
+    union = models.CharField(
+        verbose_name=_('Union'),
+        max_length=200
+    )
+    u"""
+       Coligação do candidato
+    """
+
     political_party = models.ForeignKey(
         'PoliticalParty',
         verbose_name=_(u'Political Party'),
@@ -122,8 +139,6 @@ class Candidate(models.Model):
     u"""
         Referencia o partido politico do candidato
     """
-    vice = models.CharField(_('Vice'), max_length=255)
-    union = models.CharField(_('Union'), max_length=200)
     image = models.FileField(
         upload_to=get_file_path,
         max_length=255,
