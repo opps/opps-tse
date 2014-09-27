@@ -26,6 +26,8 @@ class Migration(SchemaMigration):
             ('number', self.gf('django.db.models.fields.PositiveIntegerField')(null=True, blank=True)),
             ('slug', self.gf('django.db.models.fields.SlugField')(max_length=150)),
             ('political_party', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['tse.PoliticalParty'], null=True, blank=True)),
+            ('vice', self.gf('django.db.models.fields.CharField')(max_length=255)),
+            ('union', self.gf('django.db.models.fields.CharField')(max_length=200)),
             ('image', self.gf('django.db.models.fields.files.FileField')(max_length=255, null=True, blank=True)),
         ))
         db.send_create_signal(u'tse', ['Candidate'])
@@ -36,6 +38,12 @@ class Migration(SchemaMigration):
             ('year', self.gf('django.db.models.fields.PositiveIntegerField')()),
             ('job', self.gf('django.db.models.fields.CharField')(max_length=2, db_index=True)),
             ('state', self.gf('django.db.models.fields.CharField')(db_index=True, max_length=2, null=True, blank=True)),
+            ('valid_votes', self.gf('django.db.models.fields.PositiveIntegerField')(null=True, blank=True)),
+            ('null_votes', self.gf('django.db.models.fields.PositiveIntegerField')(null=True, blank=True)),
+            ('pending_votes', self.gf('django.db.models.fields.PositiveIntegerField')(null=True, blank=True)),
+            ('total_attendance', self.gf('django.db.models.fields.PositiveIntegerField')(null=True, blank=True)),
+            ('total_abstention', self.gf('django.db.models.fields.PositiveIntegerField')(null=True, blank=True)),
+            ('total_voters', self.gf('django.db.models.fields.PositiveIntegerField')(null=True, blank=True)),
         ))
         db.send_create_signal(u'tse', ['Election'])
 
@@ -47,6 +55,7 @@ class Migration(SchemaMigration):
             ('appured', self.gf('django.db.models.fields.PositiveIntegerField')(default=0)),
             ('votes', self.gf('django.db.models.fields.PositiveIntegerField')(default=0)),
             ('turn', self.gf('django.db.models.fields.PositiveIntegerField')(default=1)),
+            ('is_elected', self.gf('django.db.models.fields.BooleanField')(default=False)),
         ))
         db.send_create_signal(u'tse', ['Vote'])
 
@@ -74,13 +83,21 @@ class Migration(SchemaMigration):
             'name': ('django.db.models.fields.CharField', [], {'max_length': '150'}),
             'number': ('django.db.models.fields.PositiveIntegerField', [], {'null': 'True', 'blank': 'True'}),
             'political_party': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['tse.PoliticalParty']", 'null': 'True', 'blank': 'True'}),
-            'slug': ('django.db.models.fields.SlugField', [], {'max_length': '150'})
+            'slug': ('django.db.models.fields.SlugField', [], {'max_length': '150'}),
+            'union': ('django.db.models.fields.CharField', [], {'max_length': '200'}),
+            'vice': ('django.db.models.fields.CharField', [], {'max_length': '255'})
         },
         u'tse.election': {
             'Meta': {'object_name': 'Election'},
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'job': ('django.db.models.fields.CharField', [], {'max_length': '2', 'db_index': 'True'}),
+            'null_votes': ('django.db.models.fields.PositiveIntegerField', [], {'null': 'True', 'blank': 'True'}),
+            'pending_votes': ('django.db.models.fields.PositiveIntegerField', [], {'null': 'True', 'blank': 'True'}),
             'state': ('django.db.models.fields.CharField', [], {'db_index': 'True', 'max_length': '2', 'null': 'True', 'blank': 'True'}),
+            'total_abstention': ('django.db.models.fields.PositiveIntegerField', [], {'null': 'True', 'blank': 'True'}),
+            'total_attendance': ('django.db.models.fields.PositiveIntegerField', [], {'null': 'True', 'blank': 'True'}),
+            'total_voters': ('django.db.models.fields.PositiveIntegerField', [], {'null': 'True', 'blank': 'True'}),
+            'valid_votes': ('django.db.models.fields.PositiveIntegerField', [], {'null': 'True', 'blank': 'True'}),
             'year': ('django.db.models.fields.PositiveIntegerField', [], {})
         },
         u'tse.politicalparty': {
@@ -97,6 +114,7 @@ class Migration(SchemaMigration):
             'candidate': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['tse.Candidate']"}),
             'election': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['tse.Election']"}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'is_elected': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
             'turn': ('django.db.models.fields.PositiveIntegerField', [], {'default': '1'}),
             'votes': ('django.db.models.fields.PositiveIntegerField', [], {'default': '0'})
         }

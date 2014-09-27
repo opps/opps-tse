@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: opps-tse\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-09-25 19:14-0300\n"
+"POT-Creation-Date: 2014-09-27 15:31-0300\n"
 "PO-Revision-Date: 2014-09-24 22:00-0300\n"
 "Last-Translator:  Igor P. Leroy <ip.leroy@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/projects/p/opps-"
@@ -57,7 +57,7 @@ msgstr "Nome"
 msgid "Number"
 msgstr "Número"
 
-#: models.py:28 models.py:50
+#: models.py:28 models.py:52
 msgid "Image"
 msgstr "Imagem"
 
@@ -77,50 +77,82 @@ msgstr "Biografia"
 msgid "Candidate Number"
 msgstr "Número do Candidato"
 
-#: models.py:53 models.py:78
+#: models.py:48
+msgid "Vice"
+msgstr "Vice"
+
+#: models.py:49
+msgid "Union"
+msgstr "Coligação"
+
+#: models.py:55 models.py:97
 msgid "Candidate"
 msgstr "Candidato"
 
-#: models.py:54
+#: models.py:56
 msgid "Candidates"
 msgstr "Candidatos"
 
-#: models.py:61
+#: models.py:63
 msgid "Year"
 msgstr "Ano"
 
-#: models.py:63
+#: models.py:65
 msgid "Job"
 msgstr "Cargo"
 
-#: models.py:65
+#: models.py:67
 msgid "State"
 msgstr "Estado"
 
-#: models.py:68 models.py:77
+#: models.py:71
+msgid "Valid Votes"
+msgstr "Total de votos validos"
+
+#: models.py:73
+msgid "Null Votes"
+msgstr "Total de votos nulos"
+
+#: models.py:75
+msgid "Pending Votes"
+msgstr "Total de votos pendentes"
+
+#: models.py:79
+msgid "Total Attendance"
+msgstr "Total apurado"
+
+#: models.py:81
+msgid "Total Abstention"
+msgstr "Total abstenção"
+
+#: models.py:83
+msgid "Total Voters"
+msgstr "Total de votos"
+
+#: models.py:86 models.py:96
 msgid "Election"
 msgstr "Eleição"
 
-#: models.py:69
+#: models.py:87 models.py:91
 msgid "Elections"
 msgstr "Eleições"
 
-#: models.py:79
+#: models.py:98
 msgid "Total Appured"
 msgstr "Total de votos apurados"
 
-#: models.py:80
+#: models.py:99
 msgid "Total Votes"
 msgstr "Total de votos"
 
-#: models.py:81
+#: models.py:100
 msgid "Turn"
 msgstr "Turno"
 
-#: models.py:88
+#: models.py:111
 msgid "Vote"
 msgstr "Voto"
 
-#: models.py:89
+#: models.py:112
 msgid "Votes"
 msgstr "Total de votos"

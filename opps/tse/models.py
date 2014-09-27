@@ -122,6 +122,8 @@ class Candidate(models.Model):
     u"""
         Referencia o partido politico do candidato
     """
+    vice = models.CharField(_('Vice'), max_length=255)
+    union = models.CharField(_('Union'), max_length=200)
     image = models.FileField(
         upload_to=get_file_path,
         max_length=255,
@@ -176,6 +178,22 @@ class Election(models.Model):
     u"""
         Define o estado que será a eleição
     """
+
+    # global stats for votes
+    valid_votes = models.PositiveIntegerField(
+        _('Valid Votes'), null=True, blank=True)
+    null_votes = models.PositiveIntegerField(
+        _('Null Votes'), null=True, blank=True)
+    pending_votes = models.PositiveIntegerField(
+        _('Pending Votes'), null=True, blank=True)
+
+    # global stats
+    total_attendance = models.PositiveIntegerField(
+        _('Total Attendance'), null=True, blank=True)
+    total_abstention = models.PositiveIntegerField(
+        _('Total Abstention'), null=True, blank=True)
+    total_voters = models.PositiveIntegerField(
+        _('Total Voters'), null=True, blank=True)
 
     class Meta:
         verbose_name = _(u'Election')
@@ -234,6 +252,11 @@ class Vote(models.Model):
     )
     u"""
         Define o turno desta votação
+    """
+    is_elected = models.BooleanField(default=False)
+
+    u"""
+        Define se o candidato da eleicao foi eleito
     """
 
     @property
