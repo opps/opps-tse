@@ -2,7 +2,6 @@
 
 # Core Django imports
 from django.db import models
-from django.utils.translation import ugettext as _
 
 # Relative imports of the 'app-name' package
 
@@ -12,7 +11,14 @@ class PoliticalPartyQueryset(models.query.QuerySet):
     Classe para definir os querysets do model
     de partido politico
     """
-    pass
+
+    def party(self, party_name):
+        u"""
+        :param party_name: Parametro do tipo slug
+        """
+        return self.filter(
+            slug=party_name.upper()
+        )
 
 
 class PoliticalPartyManager(models.Manager):
@@ -23,9 +29,12 @@ class PoliticalPartyManager(models.Manager):
     def get_queryset(self):
         return PoliticalPartyQueryset(self.model, using=self._db)
 
-    # TODO: Fazer manager para filtro de partidos pelo slug
-    # o valor do parametro deve ser em letra maiuscula
-    pass
+    def party(self, party):
+        u"""
+        Resgata os resultados pelo slug da classe model
+        :param party_name: Parametro do tipo slug
+        """
+        return self.get_queryset().party(party)
 
 
 class CandidateQueryset(models.query.QuerySet):
