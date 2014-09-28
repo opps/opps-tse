@@ -200,7 +200,7 @@ class VoteQueryset(models.query.QuerySet):
         """
         :param l: Número para limitar a busca
         """
-        if [1, 2] not in t:
+        if t not in [1, 2]:
             raise ValueError(
                 _(
                     u'Parameter was invalid!' +
@@ -213,11 +213,7 @@ class VoteQueryset(models.query.QuerySet):
     def best_votes(self):
         """
         """
-        max_votes = self.aggregate(Max('votes'))
-        if max_votes and max_votes > 0:
-            return self.filter(votes=max_votes)
-
-        return self.none()
+        return self.order_by('-votes')
 
 
 class VoteManager(models.Manager):
