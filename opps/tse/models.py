@@ -286,10 +286,10 @@ class Vote(models.Model):
     u"""
         Define o turno desta votação
     """
-    is_elected = models.BooleanField(default=False)
 
+    is_elected = models.BooleanField(default=False)
     u"""
-        Define se o candidato da eleicao foi eleito
+        Define se nesta votação o candidato foi eleito
     """
 
     @property
