@@ -42,7 +42,13 @@ class CandidateQueryset(models.query.QuerySet):
     Classe para definir os querysets do model
     de candidato
     """
-    pass
+    def party(self, party_name):
+        u"""
+        :param party_name: Parametro do tipo slug
+        """
+        return self.filter(
+            political_party__slug=party_name.upper()
+        )
 
 
 class CandidateManager(models.Manager):
@@ -52,8 +58,12 @@ class CandidateManager(models.Manager):
     def get_queryset(self):
         return CandidateQueryset(self.model, using=self._db)
 
-    # TODO: Fazer manager para filtro de partidos politicos
-    pass
+    def by_party(self, party):
+        u"""
+        Resgata os resultados pelo slug da classe model
+        :param party_name: Parametro do tipo slug
+        """
+        return self.get_queryset().party(party)
 
 
 class ElectionQueryset(models.query.QuerySet):
