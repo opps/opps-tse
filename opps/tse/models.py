@@ -6,6 +6,12 @@ from django.utils.translation import ugettext_lazy as _
 
 from opps.archives.models import get_file_path
 
+from opps.tse.managers import (
+    CandidateManager,
+    PoliticalPartyManager,
+    ElectionManager,
+    VoteManager
+)
 
 JOBS = (
     ('v', _('Councilman')),
@@ -64,6 +70,8 @@ class PoliticalParty(models.Model):
     u"""
         Bandeira do partido
     """
+
+    objects = PoliticalPartyManager()
 
     class Meta:
         verbose_name = _('Political Party')
@@ -150,6 +158,8 @@ class Candidate(models.Model):
         Imagem do candidato
     """
 
+    objects = CandidateManager()
+
     class Meta:
         verbose_name = _('Candidate')
         verbose_name_plural = _('Candidates')
@@ -228,6 +238,8 @@ class Election(models.Model):
         blank=True
     )
 
+    objects = ElectionManager()
+
     class Meta:
         verbose_name = _(u'Election')
         verbose_name_plural = _(u'Elections')
@@ -291,6 +303,8 @@ class Vote(models.Model):
     u"""
         Define se nesta votação o candidato foi eleito
     """
+
+    objects = VoteManager()
 
     @property
     def percent(self):
