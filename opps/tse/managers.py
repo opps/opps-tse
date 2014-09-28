@@ -1,7 +1,8 @@
 # -*- coding:utf-8 -*-
 
 # Core Django imports
-from django.db import models
+from django.db import models, Max
+from django.utils.translation import ugettext as _
 
 # Relative imports of the 'app-name' package
 
@@ -147,7 +148,70 @@ class VoteQueryset(models.query.QuerySet):
     Classe para definir os querysets do model
     de votação
     """
-    pass
+
+    def party(self, party_name):
+        u"""
+        :param party_name: Parametro do tipo slug
+        """
+        return self.filter(
+            candidate__political_party__slug=party_name.upper()
+        )
+
+    def year(self, y):
+        u"""
+        :param y: Ano da eleição como inteiro positivo
+        """
+        return self.filter(election__year=y)
+
+    def state(self, state):
+        u"""
+        :param state: Parametro do com uma string contendo
+        a sigla em maiuscula do estado
+        """
+        return self.filter(election__state=state.upper())
+
+    def job(self, j):
+        u"""
+        :param j: Parametro do tipo string referenciado pela
+        tupla de jobs do models.py
+        """
+        return self.filter(election__job=j)
+
+    def jobs(self, j):
+        u"""
+        :param j: Lista contendo strings dos jobs
+        tupla de jobs do models.py
+        """
+        return self.filter(election__job__in=j)
+
+    def latest_with_limits(self, l):
+        """
+        :param l: Número para limitar a busca
+        """
+        return self.order_by("-votes")[:l]
+
+    def turn(self, t):
+        """
+        :param l: Número para limitar a busca
+        """
+        if [1, 2] not in t:
+            raise ValueError(
+                _(
+                    u'Parameter was invalid!' +
+                    u'Accepts 1 or 2 values.'
+                )
+            )
+
+        return self.filter(turn=t)
+
+    def best_votes(self):
+        """
+        """
+        max_votes = self.aggregate(Max('votes'))
+        if max_votes and max_votes > 0:
+            return self.filter(votes=max_votes)
+
+        return self.none()
 
 
 class VoteManager(models.Manager):
@@ -157,9 +221,66 @@ class VoteManager(models.Manager):
     def get_queryset(self):
         return VoteQueryset(self.model, using=self._db)
 
-    # TODO: Fazer manager para turnos 1 e 2
-    # TODO: Fazer manager para melhor votados
-    # TODO: Fazer manager para limitar o numero de objetos
-    # por exempĺo 5 melhores 3 melhores 10 melhores
-    # atraves da propriedade percent
-    pass
+    def latest_with_limits(self, limit):
+        """
+        Retorna os ultimas votacao
+        de acordo com o limit setado
+        :param limit: Integer seta o limite da busca
+        """
+        return self.get_queryset().latest_with_limits(limit)
+
+    def party(self, party_name):
+        u"""
+        Retorna as votacoes pelo partidos politicos do candidato
+        """
+        return self.get_queryset().party(party_name)
+
+    def year(self, y):
+        u"""
+        Retorna as votacoes pelo ano da eleicao
+        """
+        return self.get_queryset().year(y)
+
+    def state(self, state):
+        u"""
+        Retorna as votações pelo estado
+        """
+        return self.get_queryset().state(state)
+
+    def job(self, j):
+        u"""
+        Retorna as votações pelo cargo
+        """
+        return self.get_queryset().job(j)
+
+    def jobs(self, j):
+        u"""
+        Retorna as votações pelos cargos
+        """
+        return self.get_queryset().jobs(j)
+
+    def turn(self, t):
+        """
+        Retorna as votações por turno
+        """
+        if [1, 2] not in t:
+            raise ValueError(
+                _(
+                    u'Parameter was invalid!' +
+                    u'Accepts 1 or 2 values.'
+                )
+            )
+
+        return self.filter(turn=t)
+
+    def best_votes(self):
+        """
+        Retorna os melhores votados.
+        Este manager é melhor utilizado combando
+        com outros manager como turno, state, job
+        """
+        max_votes = self.aggregate(Max('votes'))
+        if max_votes and max_votes > 0:
+            return self.filter(votes=max_votes)
+
+        return self.none()
