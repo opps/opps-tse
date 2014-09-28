@@ -190,6 +190,11 @@ class VoteQueryset(models.query.QuerySet):
         """
         return self.order_by("-votes")[:l]
 
+    def elected(self):
+        u"""
+        """
+        return self.filter(is_elected=True)
+
     def turn(self, t):
         """
         :param l: Número para limitar a busca
@@ -272,6 +277,12 @@ class VoteManager(models.Manager):
             )
 
         return self.filter(turn=t)
+
+    def elected(self):
+        u"""
+        Retorna as votações de quem foi eleito
+        """
+        return self.get_queryset().elected()
 
     def best_votes(self):
         """
