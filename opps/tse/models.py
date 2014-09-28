@@ -210,16 +210,25 @@ class Election(models.Model):
         null=True,
         blank=True
     )
+    u"""
+        Total de votos validos
+    """
     null_votes = models.PositiveIntegerField(
         verbose_name=_('Null Votes'),
         null=True,
         blank=True
     )
+    u"""
+        Total de votos Brancos ou nulos
+    """
     pending_votes = models.PositiveIntegerField(
         verbose_name=_('Pending Votes'),
         null=True,
         blank=True
     )
+    u"""
+        Total de votos a serem apurados
+    """
 
     # global stats
     total_attendance = models.PositiveIntegerField(
@@ -227,16 +236,25 @@ class Election(models.Model):
         null=True,
         blank=True
     )
+    u"""
+        Total de votos computados
+    """
     total_abstention = models.PositiveIntegerField(
         verbose_name=_('Total Abstention'),
         null=True,
         blank=True
     )
+    u"""
+        Total de abstenção
+    """
     total_voters = models.PositiveIntegerField(
         verbose_name=_('Total Voters'),
         null=True,
         blank=True
     )
+    u"""
+        Total de votos
+    """
 
     objects = ElectionManager()
 
