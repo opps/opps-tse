@@ -71,7 +71,33 @@ class ElectionQueryset(models.query.QuerySet):
     Classe para definir os querysets do model
     de eleições
     """
-    pass
+
+    def year(self, y):
+        u"""
+        :param y: Ano da eleição como inteiro positivo
+        """
+        return self.filter(year=y)
+
+    def state(self, state):
+        u"""
+        :param state: Parametro do com uma string contendo
+        a sigla em maiuscula do estado
+        """
+        return self.filter(state=state.upper())
+
+    def job(self, j):
+        u"""
+        :param j: Parametro do tipo string referenciado pela
+        tupla de jobs do models.py
+        """
+        return self.filter(job=j)
+
+    def jobs(self, j):
+        u"""
+        :param j: Lista contendo strings dos jobs
+        tupla de jobs do models.py
+        """
+        return self.filter(job__in=j)
 
 
 class ElectionManager(models.Manager):
@@ -81,9 +107,39 @@ class ElectionManager(models.Manager):
     def get_queryset(self):
         return ElectionQueryset(self.model, using=self._db)
 
-    # TODO: Fazer manager para filtro de estados
-    # TODO: Fazer manager para cargos da eleicoao
-    pass
+    def year(self, y):
+        u"""
+        Retorna lista com as eleicoes do ano
+        correspondente pelo parametro
+        :param y: Ano da eleição como inteiro positivo
+        """
+        return self.get_queryset().year(y)
+
+    def state(self, state):
+        u"""
+        Retorna lista com as eleicoes daquele estado
+        :param state: Parametro do com uma string contendo
+        a sigla em maiuscula do estado
+        """
+        return self.get_queryset().state(state)
+
+    def job(self, j):
+        u"""
+        Retorna lista das eleicoes especificando um
+        cargo
+        :param j: Parametro do tipo string referenciado pela
+        tupla de jobs do models.py
+        """
+        return self.get_queryset().job(j)
+
+    def jobs(self, j):
+        u"""
+        Retorna lista das eleicoes especificando um
+        lista de cargos
+        :param j: Lista contendo strings dos jobs
+        tupla de jobs do models.py
+        """
+        return self.get_queryset().jobs(j)
 
 
 class VoteQueryset(models.query.QuerySet):
