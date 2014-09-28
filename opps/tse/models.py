@@ -143,15 +143,43 @@ class Candidate(models.Model):
 
 
 class Election(models.Model):
-    year = models.PositiveIntegerField(_('Year'))
+    u"""
+    Portuguese:
+    Classe model para salvar as eleicoes
+
+    English:
+
+    Needs translate here
+    """
+    year = models.PositiveIntegerField(
+        verbose_name=_(u'Year')
+    )
+    u"""
+        Define o ano da eleição
+    """
     job = models.CharField(
-        _('Job'), db_index=True, max_length=2, choices=JOBS)
+        verbose_name=_(u'Job'),
+        db_index=True,
+        max_length=2,
+        choices=JOBS
+    )
+    u"""
+        Define o cargo da eleicao
+    """
     state = models.CharField(
-        _('State'), max_length=2, blank=True, null=True, db_index=True)
+        verbose_name=_(u'State'),
+        max_length=2,
+        blank=True,
+        null=True,
+        db_index=True
+    )
+    u"""
+        Define o estado que será a elição
+    """
 
     class Meta:
-        verbose_name = _('Election')
-        verbose_name_plural = _('Elections')
+        verbose_name = _(u'Election')
+        verbose_name_plural = _(u'Elections')
 
     def __unicode__(self):
         return "{0} {1} - {2} {3}".format(
