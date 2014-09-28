@@ -1,7 +1,8 @@
 # -*- coding:utf-8 -*-
 
 # Core Django imports
-from django.db import models, Max
+from django.db import models
+
 from django.utils.translation import ugettext as _
 
 # Relative imports of the 'app-name' package
@@ -290,7 +291,7 @@ class VoteManager(models.Manager):
         Este manager é melhor utilizado combando
         com outros manager como turno, state, job
         """
-        max_votes = self.aggregate(Max('votes'))
+        max_votes = self.aggregate(models.Max('votes'))
         if max_votes and max_votes > 0:
             return self.filter(votes=max_votes)
 
