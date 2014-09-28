@@ -174,7 +174,7 @@ class Election(models.Model):
         db_index=True
     )
     u"""
-        Define o estado que será a elição
+        Define o estado que será a eleição
     """
 
     class Meta:
@@ -188,11 +188,53 @@ class Election(models.Model):
 
 
 class Vote(models.Model):
-    election = models.ForeignKey('Election', verbose_name=_('Election'))
-    candidate = models.ForeignKey('Candidate', verbose_name=_('Candidate'))
-    appured = models.PositiveIntegerField(_('Total Appured'), default=0)
-    votes = models.PositiveIntegerField(_('Total Votes'), default=0)
-    turn = models.PositiveIntegerField(_('Turn'), default=1)
+    u"""
+    Portuguese:
+    Classe model para salvar a votação
+
+    English:
+
+    Needs translate here
+    """
+    election = models.ForeignKey(
+        'Election',
+        verbose_name=_(u'Election')
+    )
+    u"""
+        Referencia qual a eleicao dessa votação
+    """
+
+    candidate = models.ForeignKey(
+        'Candidate',
+        verbose_name=_(u'Candidate')
+    )
+    u"""
+        Referencia qual o candidato pertence a votação
+    """
+
+    appured = models.PositiveIntegerField(
+        verbose_name=_(u'Total Appured'),
+        default=0
+    )
+    u"""
+        Total de votos apurados
+    """
+
+    votes = models.PositiveIntegerField(
+        verbose_name=_('Total Votes'),
+        default=0
+    )
+    u"""
+        Total de votos recebidos do candidato e desta eleição
+    """
+
+    turn = models.PositiveIntegerField(
+        verbose_name=_('Turn'),
+        default=1
+    )
+    u"""
+        Define o turno desta votação
+    """
 
     @property
     def percent(self):
