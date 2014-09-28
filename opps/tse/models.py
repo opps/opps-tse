@@ -300,8 +300,8 @@ class Vote(models.Model):
             return 0
 
     class Meta:
-        verbose_name = _('Vote')
-        verbose_name_plural = _('Votes')
+        verbose_name = _(u'Votação')
+        verbose_name_plural = _(u'Votações')
 
     def __unicode__(self):
         return '{0} - {1} {2}%'.format(
