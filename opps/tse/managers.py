@@ -53,6 +53,11 @@ class CandidateQueryset(models.query.QuerySet):
             political_party__slug=party_name.upper()
         )
 
+    def featured(self):
+        """
+        """
+        return self.filter(is_featured=True)
+
 
 class CandidateManager(models.Manager):
     u"""
@@ -67,6 +72,11 @@ class CandidateManager(models.Manager):
         :param party_name: Parametro do tipo slug
         """
         return self.get_queryset().party(party)
+
+    def featured(self):
+        """
+        """
+        return self.get_queryset().featured()
 
 
 class ElectionQueryset(models.query.QuerySet):
@@ -216,6 +226,11 @@ class VoteQueryset(models.query.QuerySet):
         """
         return self.order_by('-votes')
 
+    def featured(self):
+        """
+        """
+        return self.filter(candidate__is_featured=True)
+
 
 class VoteManager(models.Manager):
     u"""
@@ -288,8 +303,10 @@ class VoteManager(models.Manager):
         Este manager é melhor utilizado combando
         com outros manager como turno, state, job
         """
-        max_votes = self.aggregate(models.Max('votes'))
-        if max_votes and max_votes > 0:
-            return self.filter(votes=max_votes)
+        return self.get_queryset().best_votes()
 
-        return self.none()
+    def featured(self):
+        """
+        Retorna os candidatos da votação em destaque
+        """
+        return self.filter(candidate__is_featured=True)
