@@ -287,38 +287,6 @@ class Election(models.Model):
 
     objects = ElectionManager()
 
-    # global stats for votes
-    valid_votes = models.PositiveIntegerField(
-        _('Valid Votes'), null=True, blank=True)
-    null_votes = models.PositiveIntegerField(
-        _('Null Votes'), null=True, blank=True)
-    pending_votes = models.PositiveIntegerField(
-        _('Pending Votes'), null=True, blank=True)
-
-    # global stats
-    total_attendance = models.PositiveIntegerField(
-        _('Total Attendance'), null=True, blank=True)
-    total_abstention = models.PositiveIntegerField(
-        _('Total Abstention'), null=True, blank=True)
-    total_voters = models.PositiveIntegerField(
-        _('Total Voters'), null=True, blank=True)
-
-    # global stats for votes
-    valid_votes = models.PositiveIntegerField(
-        _('Valid Votes'), null=True, blank=True)
-    null_votes = models.PositiveIntegerField(
-        _('Null Votes'), null=True, blank=True)
-    pending_votes = models.PositiveIntegerField(
-        _('Pending Votes'), null=True, blank=True)
-
-    # global stats
-    total_attendance = models.PositiveIntegerField(
-        _('Total Attendance'), null=True, blank=True)
-    total_abstention = models.PositiveIntegerField(
-        _('Total Abstention'), null=True, blank=True)
-    total_voters = models.PositiveIntegerField(
-        _('Total Voters'), null=True, blank=True)
-
     class Meta:
         verbose_name = _(u'Election')
         verbose_name_plural = _(u'Elections')
