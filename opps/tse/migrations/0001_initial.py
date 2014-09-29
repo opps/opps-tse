@@ -25,6 +25,7 @@ class Migration(SchemaMigration):
             ('bio', self.gf('django.db.models.fields.TextField')(null=True, blank=True)),
             ('number', self.gf('django.db.models.fields.PositiveIntegerField')(null=True, blank=True)),
             ('slug', self.gf('django.db.models.fields.SlugField')(max_length=150)),
+            ('state', self.gf('django.db.models.fields.CharField')(max_length=2)),
             ('has_vice', self.gf('django.db.models.fields.BooleanField')(default=False)),
             ('vice', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['tse.Candidate'], null=True, blank=True)),
             ('union', self.gf('django.db.models.fields.CharField')(max_length=200, null=True, blank=True)),
@@ -88,6 +89,7 @@ class Migration(SchemaMigration):
             'number': ('django.db.models.fields.PositiveIntegerField', [], {'null': 'True', 'blank': 'True'}),
             'political_party': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['tse.PoliticalParty']", 'null': 'True', 'blank': 'True'}),
             'slug': ('django.db.models.fields.SlugField', [], {'max_length': '150'}),
+            'state': ('django.db.models.fields.CharField', [], {'max_length': '2'}),
             'union': ('django.db.models.fields.CharField', [], {'max_length': '200', 'null': 'True', 'blank': 'True'}),
             'vice': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['tse.Candidate']", 'null': 'True', 'blank': 'True'})
         },

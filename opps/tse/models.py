@@ -122,6 +122,14 @@ class Candidate(models.Model):
         Slug do nome do candidato
     """
 
+    state = models.CharField(
+        verbose_name=_(u'State'),
+        max_length=2
+    )
+    u"""
+        Define o estado do candidato
+    """
+
     has_vice = models.BooleanField(
         verbose_name=_(u'Vice?'),
         default=False
