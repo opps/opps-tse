@@ -23,9 +23,6 @@ __copyright__ = "Copyright 2014, YACOWS"
 OPPS_TSE_CANDIDATES_CSV_URL = \
     'https://dl.dropboxusercontent.com/u/7206028/consulta_cand_2014.zip'
 
-OPPS_TSE_CANDIDATES_PHOTOS_DIRECTORY = \
-    '/home/lucas/Downloads/canditados/fotos_dos_candidatos'
-
 OPPS_TSE_POLITICAL_PARTY_CSV = \
     'https://dl.dropboxusercontent.com/u/7206028/partidos.csv'
 
