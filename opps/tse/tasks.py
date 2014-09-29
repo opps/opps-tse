@@ -13,7 +13,7 @@ from opps.tse import (
 OPPS_TSE_CANDIDATES_PHOTOS_DIRECTORY = getattr(
     settings,
     'OPPS_TSE_CANDIDATES_PHOTOS_DIRECTORY',
-    '/path/to')
+    '')
 
 
 def populate_candidates():

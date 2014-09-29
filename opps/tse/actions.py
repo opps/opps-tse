@@ -84,13 +84,12 @@ def parse_candidates_csv(url, photo_directory):
                 state=candidate['state'],
             )
 
-            # TODO: Do upload images
-
-            process_upload_image(
-                candidate,
-                c,
-                photo_directory
-            )
+            if photo_directory:
+                process_upload_image(
+                    candidate,
+                    c,
+                    photo_directory
+                )
 
             if c and candidate['election']:
                 c.vote_set.get_or_create(election=candidate['election'])
