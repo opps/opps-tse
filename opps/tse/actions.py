@@ -12,16 +12,9 @@ from opps.tse.models import PoliticalParty, Candidate, Election
 
 from django.template.defaultfilters import slugify
 from django.core.files import File
-from django.conf import settings
 
 from os import listdir
 from os.path import isfile, join
-
-
-OPPS_TSE_CANDIDATES_PHOTOS_DIRECTORY = getattr(
-    settings,
-    'OPPS_TSE_CANDIDATES_PHOTOS_DIRECTORY',
-    '/path/to')
 
 
 def format_candidates_csv(line):

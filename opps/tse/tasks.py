@@ -1,14 +1,19 @@
 # -*- coding:utf-8 -*-
 from __future__ import unicode_literals
 
+from django.conf import settings
 from opps.tse.actions import parse_candidates_csv, parse_party_csv
 from opps.tse.models import Election
 from opps.tse import (
     OPPS_TSE_CANDIDATES_CSV_URL,
-    OPPS_TSE_CANDIDATES_PHOTOS_DIRECTORY,
     OPPS_TSE_POLITICAL_PARTY_CSV,
     slugs
 )
+
+OPPS_TSE_CANDIDATES_PHOTOS_DIRECTORY = getattr(
+    settings,
+    'OPPS_TSE_CANDIDATES_PHOTOS_DIRECTORY',
+    '/path/to')
 
 
 def populate_candidates():
