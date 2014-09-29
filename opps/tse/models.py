@@ -122,9 +122,28 @@ class Candidate(models.Model):
         Slug do nome do candidato
     """
 
-    vice = models.CharField(
-        verbose_name=_('Vice'),
-        max_length=255
+    has_vice = models.BooleanField(
+        verbose_name=_(u'Vice?'),
+        default=False
+    )
+    u"""
+        Define se esse candidato possui
+        um vice, como
+        Presidente e Vice-Presidente
+        Governador e Vice-Governador
+        Senador e Suplente de Senador
+        Prefeito e Vice-prefeito
+
+        Cargos como os abaixo não possuem vices
+        Deputado Federal, Distrital e Estadual
+        Vereador
+    """
+
+    vice = models.ForeignKey(
+        'Candidate',
+        verbose_name=_(u'Vice'),
+        blank=True,
+        null=True,
     )
     u"""
         Insere o vice do candidato
@@ -132,7 +151,9 @@ class Candidate(models.Model):
 
     union = models.CharField(
         verbose_name=_('Union'),
-        max_length=200
+        max_length=200,
+        blank=True,
+        null=True
     )
     u"""
        Coligação do candidato

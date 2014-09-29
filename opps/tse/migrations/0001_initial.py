@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-import datetime
+from south.utils import datetime_utils as datetime
 from south.db import db
 from south.v2 import SchemaMigration
 from django.db import models
@@ -25,9 +25,10 @@ class Migration(SchemaMigration):
             ('bio', self.gf('django.db.models.fields.TextField')(null=True, blank=True)),
             ('number', self.gf('django.db.models.fields.PositiveIntegerField')(null=True, blank=True)),
             ('slug', self.gf('django.db.models.fields.SlugField')(max_length=150)),
+            ('has_vice', self.gf('django.db.models.fields.BooleanField')(default=False)),
+            ('vice', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['tse.Candidate'], null=True, blank=True)),
+            ('union', self.gf('django.db.models.fields.CharField')(max_length=200, null=True, blank=True)),
             ('political_party', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['tse.PoliticalParty'], null=True, blank=True)),
-            ('vice', self.gf('django.db.models.fields.CharField')(max_length=255)),
-            ('union', self.gf('django.db.models.fields.CharField')(max_length=200)),
             ('image', self.gf('django.db.models.fields.files.FileField')(max_length=255, null=True, blank=True)),
         ))
         db.send_create_signal(u'tse', ['Candidate'])
@@ -76,16 +77,17 @@ class Migration(SchemaMigration):
 
     models = {
         u'tse.candidate': {
-            'Meta': {'object_name': 'Candidate'},
+            'Meta': {'ordering': "[u'name']", 'object_name': 'Candidate'},
             'bio': ('django.db.models.fields.TextField', [], {'null': 'True', 'blank': 'True'}),
+            'has_vice': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'image': ('django.db.models.fields.files.FileField', [], {'max_length': '255', 'null': 'True', 'blank': 'True'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '150'}),
             'number': ('django.db.models.fields.PositiveIntegerField', [], {'null': 'True', 'blank': 'True'}),
             'political_party': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['tse.PoliticalParty']", 'null': 'True', 'blank': 'True'}),
             'slug': ('django.db.models.fields.SlugField', [], {'max_length': '150'}),
-            'union': ('django.db.models.fields.CharField', [], {'max_length': '200'}),
-            'vice': ('django.db.models.fields.CharField', [], {'max_length': '255'})
+            'union': ('django.db.models.fields.CharField', [], {'max_length': '200', 'null': 'True', 'blank': 'True'}),
+            'vice': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['tse.Candidate']", 'null': 'True', 'blank': 'True'})
         },
         u'tse.election': {
             'Meta': {'object_name': 'Election'},
