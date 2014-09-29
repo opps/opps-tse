@@ -59,6 +59,7 @@ def format_candidates_csv(line):
         'job': job,
         'election': election,
         'state': state,
+        'union': line[21],
         'image_name': 'F{0}{1}.jpg'.format(state, line[11]),
     }
 
@@ -82,6 +83,7 @@ def parse_candidates_csv(url, photo_directory):
                 number=candidate['number'],
                 name=candidate['name'],
                 state=candidate['state'],
+                union=candidate['union'],
             )
 
             if photo_directory:
