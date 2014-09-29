@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from django import template
+from django.template import Library
+from django.db.models import Q
 
-from opps.tse.models import Election, Candidate
+from opps.tse.models import Election, Candidate, Vote
 
-register = template.Library()
+register = Library()
 
 
 @register.simple_tag(takes_context=True)
@@ -24,5 +25,15 @@ def get_candidate(context, **kwargs):
     {% load tse_tags %}
     {% get_candidate 'dilma' %}
     """
-    candidate = Candidate.objects.get(**kwargs)
-    return candidate
+    return Candidate.objects.get(**kwargs)
+
+
+@register.assignment_tag()
+def get_candidates(**kwargs):
+    """
+    Retorna a lista de candidatos de acordo
+    com os parametos nomeados
+    """
+    return Candidate.objects.filter(
+        vote__election__job=kwargs.get('job', '')
+    )
