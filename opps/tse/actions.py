@@ -80,7 +80,8 @@ def parse_candidates_csv(url, photo_directory):
                 continue
             c, created = Candidate.objects.get_or_create(
                 number=candidate['number'],
-                name=candidate['name']
+                name=candidate['name'],
+                state=candidate['state'],
             )
 
             # TODO: Do upload images
