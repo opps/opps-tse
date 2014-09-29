@@ -58,7 +58,8 @@ def format_candidates_csv(line):
         'bio': bio,
         'job': job,
         'election': election,
-        'image_name': 'F{0}{1}.jpg'.format(line[5], line[11]),
+        'state': state,
+        'image_name': 'F{0}{1}.jpg'.format(state, line[11]),
     }
 
 
