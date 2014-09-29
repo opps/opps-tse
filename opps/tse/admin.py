@@ -6,9 +6,9 @@ from .models import Candidate, PoliticalParty, Election, Vote
 
 class CandidateAdmin(admin.ModelAdmin):
 
-    search_fields = ['name', 'number', 'political_party']
+    search_fields = ['name', ]
 
-    list_filter = ('number', )
+    list_filter = ('political_party', )
 
     list_display = (
         'name', 'slug', 'number', 'union', 'political_party'
