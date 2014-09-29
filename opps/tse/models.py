@@ -109,6 +109,10 @@ class Candidate(models.Model):
         db_index=True,
         max_length=150
     )
+    is_featured = models.BooleanField(
+        verbose_name=_('Is Featured?'),
+        default=False
+    )
     state = models.CharField(
         verbose_name=_(u'State'),
         max_length=2
