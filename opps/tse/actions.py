@@ -62,7 +62,11 @@ def format_candidates_csv(line):
     }
 
 
-def parse_candidates_csv(url):
+def parse_candidates_csv(url, photo_directory):
+    u"""
+    :param url: Url to has a csv file with candidates
+    :param photo_directory: String about a directory of photos candidates
+    """
     r = requests.get(url)
     z = zipfile.ZipFile(StringIO.StringIO(r.content))
     for filename in z.namelist():
@@ -79,12 +83,11 @@ def parse_candidates_csv(url):
             )
 
             # TODO: Do upload images
-            # TODO: alterar o diretorio fixo
 
             process_upload_image(
                 candidate,
                 c,
-                '/home/lucas/Downloads/canditados/fotos_dos_candidatos'
+                photo_directory
             )
 
             if c and candidate['election']:
