@@ -1,8 +1,11 @@
 # -*- coding:utf-8 -*-
 from __future__ import unicode_literals
 
+from random import randint, sample
+
 # Core Django imports
 from django.db import models
+from django.db.models import Count
 
 from django.utils.translation import ugettext as _
 
@@ -58,6 +61,23 @@ class CandidateQueryset(models.query.QuerySet):
         """
         return self.filter(is_featured=True)
 
+    def random(self):
+        """
+        Get a random object
+        """
+        count = self.aggregate(count=Count('id'))['count']
+        random_index = randint(0, count - 1)
+        return self.filter(id=random_index)
+
+    def randoms(self, qty):
+        """
+        Get a list of random objects
+        :param qty: Integer that sepecify a quantity objects
+        """
+        count = self.aggregate(count=Count('id'))['count']
+        rand_ids = sample(xrange(1, count), qty)
+        return self.filter(id__in=rand_ids)
+
 
 class CandidateManager(models.Manager):
     u"""
@@ -77,6 +97,16 @@ class CandidateManager(models.Manager):
         """
         """
         return self.get_queryset().featured()
+
+    def random(self):
+        """
+        """
+        return self.get_queryset().random()
+
+    def randoms(self, qty):
+        """
+        """
+        return self.get_queryset().randoms(qty)
 
 
 class ElectionQueryset(models.query.QuerySet):
