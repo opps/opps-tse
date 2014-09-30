@@ -23,9 +23,11 @@ class Migration(SchemaMigration):
             (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
             ('name', self.gf('django.db.models.fields.CharField')(max_length=150)),
             ('bio', self.gf('django.db.models.fields.TextField')(null=True, blank=True)),
+            ('sexo', self.gf('django.db.models.fields.CharField')(max_length=15)),
+            ('schooling', self.gf('django.db.models.fields.CharField')(max_length=30)),
+            ('birthdate', self.gf('django.db.models.fields.CharField')(max_length=30)),
             ('number', self.gf('django.db.models.fields.PositiveIntegerField')(null=True, blank=True)),
             ('slug', self.gf('django.db.models.fields.SlugField')(max_length=150)),
-            ('is_featured', self.gf('django.db.models.fields.BooleanField')(default=False)),
             ('state', self.gf('django.db.models.fields.CharField')(max_length=2)),
             ('has_vice', self.gf('django.db.models.fields.BooleanField')(default=False)),
             ('vice', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['tse.Candidate'], null=True, blank=True)),
@@ -58,6 +60,7 @@ class Migration(SchemaMigration):
             ('appured', self.gf('django.db.models.fields.PositiveIntegerField')(default=0)),
             ('votes', self.gf('django.db.models.fields.PositiveIntegerField')(default=0)),
             ('turn', self.gf('django.db.models.fields.PositiveIntegerField')(default=1)),
+            ('is_featured', self.gf('django.db.models.fields.BooleanField')(default=False)),
             ('is_elected', self.gf('django.db.models.fields.BooleanField')(default=False)),
         ))
         db.send_create_signal(u'tse', ['Vote'])
@@ -81,13 +84,15 @@ class Migration(SchemaMigration):
         u'tse.candidate': {
             'Meta': {'ordering': "[u'name']", 'object_name': 'Candidate'},
             'bio': ('django.db.models.fields.TextField', [], {'null': 'True', 'blank': 'True'}),
+            'birthdate': ('django.db.models.fields.CharField', [], {'max_length': '30'}),
             'has_vice': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'image': ('django.db.models.fields.files.FileField', [], {'max_length': '255', 'null': 'True', 'blank': 'True'}),
-            'is_featured': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '150'}),
             'number': ('django.db.models.fields.PositiveIntegerField', [], {'null': 'True', 'blank': 'True'}),
             'political_party': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['tse.PoliticalParty']", 'null': 'True', 'blank': 'True'}),
+            'schooling': ('django.db.models.fields.CharField', [], {'max_length': '30'}),
+            'sexo': ('django.db.models.fields.CharField', [], {'max_length': '15'}),
             'slug': ('django.db.models.fields.SlugField', [], {'max_length': '150'}),
             'state': ('django.db.models.fields.CharField', [], {'max_length': '2'}),
             'union': ('django.db.models.fields.CharField', [], {'max_length': '200', 'null': 'True', 'blank': 'True'}),
@@ -121,6 +126,7 @@ class Migration(SchemaMigration):
             'election': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['tse.Election']"}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'is_elected': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
+            'is_featured': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
             'turn': ('django.db.models.fields.PositiveIntegerField', [], {'default': '1'}),
             'votes': ('django.db.models.fields.PositiveIntegerField', [], {'default': '0'})
         }
