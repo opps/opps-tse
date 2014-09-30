@@ -6,7 +6,7 @@ from .models import Candidate, PoliticalParty, Election, Vote
 
 class CandidateAdmin(admin.ModelAdmin):
 
-    search_fields = ['name', ]
+    search_fields = ['name', 'number']
 
     list_filter = ('political_party', )
 
@@ -37,7 +37,10 @@ class ElectionAdmin(admin.ModelAdmin):
 
 class VoteAdmin(admin.ModelAdmin):
 
-    search_fields = ['candidate', ]
+    search_fields = [
+        'candidate__name',
+        'candidate__number',
+    ]
 
     list_filter = [
         'election',
