@@ -55,6 +55,9 @@ def format_candidates_csv(line):
         'number': line[12],
         'political_party': pp,
         'slug': slugify('{0}-{1}'.format(line[13], line[12])),
+        'gender': line[29],
+        'schooling': line[31],
+        'birthdate': line[24],
         'bio': bio,
         'job': job,
         'election': election,
@@ -84,14 +87,18 @@ def parse_candidates_csv(url, photo_directory):
                 name=candidate['name'],
                 state=candidate['state'],
                 union=candidate['union'],
+                gender=candidate['gender'],
+                schooling=candidate['schooling'],
+                birthdate=candidate['birthdate'],
             )
 
             if photo_directory:
-                process_upload_image(
-                    candidate,
-                    c,
-                    photo_directory
-                )
+                # process_upload_image(
+                #     candidate,
+                #     c,
+                #     photo_directory
+                # )
+                pass
 
             if c and candidate['election']:
                 c.vote_set.get_or_create(election=candidate['election'])
