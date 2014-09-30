@@ -56,10 +56,8 @@ class CandidateQueryset(models.query.QuerySet):
             political_party__slug=party_name.upper()
         )
 
-    def featured(self):
-        """
-        """
-        return self.filter(is_featured=True)
+    def main(self):
+        return self.filter(is_main=True)
 
     def random(self):
         """
@@ -252,20 +250,13 @@ class VoteQueryset(models.query.QuerySet):
         return self.filter(turn=t)
 
     def best_votes(self):
-        """
-        """
         return self.order_by('-votes')
 
-    def featured(self):
-        """
-        """
-        return self.filter(is_featured=True)
+    def main(self):
+        return self.filter(is_main=True)
 
 
 class VoteManager(models.Manager):
-    u"""
-    Define um manager para o model de votação
-    """
     def get_queryset(self):
         return VoteQueryset(self.model, using=self._db)
 

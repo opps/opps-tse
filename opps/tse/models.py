@@ -210,10 +210,8 @@ class Vote(models.Model):
     appured = models.PositiveIntegerField(_('Total Appured'), default=0)
     votes = models.PositiveIntegerField(_('Total Votes'), default=0)
     turn = models.PositiveIntegerField(_('Turn'), default=1)
-    is_featured = models.BooleanField(
-        verbose_name=_('Is Featured?'),
-        default=False
-    )
+    is_main = models.BooleanField(
+        verbose_name=_('Is main?'), default=False)
     is_elected = models.BooleanField(default=False)
     objects = VoteManager()
 

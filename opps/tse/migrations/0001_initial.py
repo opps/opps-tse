@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from south.utils import datetime_utils as datetime
+import datetime
 from south.db import db
 from south.v2 import SchemaMigration
 from django.db import models
@@ -60,7 +60,7 @@ class Migration(SchemaMigration):
             ('appured', self.gf('django.db.models.fields.PositiveIntegerField')(default=0)),
             ('votes', self.gf('django.db.models.fields.PositiveIntegerField')(default=0)),
             ('turn', self.gf('django.db.models.fields.PositiveIntegerField')(default=1)),
-            ('is_featured', self.gf('django.db.models.fields.BooleanField')(default=False)),
+            ('is_main', self.gf('django.db.models.fields.BooleanField')(default=False)),
             ('is_elected', self.gf('django.db.models.fields.BooleanField')(default=False)),
         ))
         db.send_create_signal(u'tse', ['Vote'])
@@ -126,7 +126,7 @@ class Migration(SchemaMigration):
             'election': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['tse.Election']"}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'is_elected': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
-            'is_featured': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
+            'is_main': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
             'turn': ('django.db.models.fields.PositiveIntegerField', [], {'default': '1'}),
             'votes': ('django.db.models.fields.PositiveIntegerField', [], {'default': '0'})
         }
