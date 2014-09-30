@@ -57,7 +57,7 @@ def format_candidates_csv(line):
         'slug': slugify('{0}-{1}'.format(line[13], line[12])),
         'gender': line[29],
         'schooling': line[31],
-        'birthdate': line[24],
+        'birthdate': line[25],
         'bio': bio,
         'job': job,
         'election': election,
