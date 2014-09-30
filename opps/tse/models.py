@@ -86,16 +86,16 @@ class Candidate(models.Model):
         max_length=150
     )
     state = models.CharField(
-        verbose_name=_(u'State'),
+        verbose_name=_('State'),
         max_length=2
     )
     has_vice = models.BooleanField(
-        verbose_name=_(u'Vice?'),
+        verbose_name=_('Vice?'),
         default=False
     )
     vice = models.ForeignKey(
         'Candidate',
-        verbose_name=_(u'Vice'),
+        verbose_name=_('Vice'),
         blank=True,
         null=True,
     )
@@ -195,8 +195,8 @@ class Election(models.Model):
     objects = ElectionManager()
 
     class Meta:
-        verbose_name = _(u'Election')
-        verbose_name_plural = _(u'Elections')
+        verbose_name = _('Election')
+        verbose_name_plural = _('Elections')
 
     def __unicode__(self):
         return "{0} {1} - {2} {3}".format(
@@ -223,8 +223,8 @@ class Vote(models.Model):
             return 0
 
     class Meta:
-        verbose_name = _(u'Votação')
-        verbose_name_plural = _(u'Votações')
+        verbose_name = _('Vote')
+        verbose_name_plural = _('Votes')
 
     def __unicode__(self):
         return '{0} - {1} {2}%'.format(

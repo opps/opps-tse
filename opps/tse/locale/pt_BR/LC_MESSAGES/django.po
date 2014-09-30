@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: opps-tse\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-09-27 15:31-0300\n"
+"POT-Creation-Date: 2014-09-30 11:27-0300\n"
 "PO-Revision-Date: 2014-09-24 22:00-0300\n"
 "Last-Translator:  Igor P. Leroy <ip.leroy@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/projects/p/opps-"
@@ -17,142 +17,166 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: models.py:11
+#: managers.py:187 managers.py:249
+msgid "Parameter was invalid!Accepts 1 or 2 values."
+msgstr "Parametro inválido! Aceita o valor 1 ou 2."
+
+#: models.py:14
 msgid "Councilman"
 msgstr "Vereador"
 
-#: models.py:12
+#: models.py:15
 msgid "Mayor"
 msgstr "Prefeito"
 
-#: models.py:13
+#: models.py:16
 msgid "State Representative"
 msgstr "Deputado Estadual"
 
-#: models.py:14
+#: models.py:17
 msgid "Congressman"
 msgstr "Deputado Federal"
 
-#: models.py:15
+#: models.py:18
 msgid "Governor"
 msgstr "Governador"
 
-#: models.py:16
+#: models.py:19
 msgid "Senator"
 msgstr "Senador"
 
-#: models.py:17
+#: models.py:20
 msgid "President"
 msgstr "Presidente"
 
-#: models.py:22 models.py:44
+#: models.py:26 models.py:84
 msgid "Slug"
 msgstr "Slug"
 
-#: models.py:23 models.py:39
+#: models.py:30 models.py:58
 msgid "Name"
 msgstr "Nome"
 
-#: models.py:25
+#: models.py:34
 msgid "Number"
 msgstr "Número"
 
-#: models.py:28 models.py:52
+#: models.py:41 models.py:117
 msgid "Image"
 msgstr "Imagem"
 
-#: models.py:31 models.py:46
+#: models.py:49 models.py:110
 msgid "Political Party"
 msgstr "Partido Político"
 
-#: models.py:32
+#: models.py:50
 msgid "Political Parties"
 msgstr "Partidos Políticos"
 
-#: models.py:40
+#: models.py:62
 msgid "Bio"
 msgstr "Biografia"
 
-#: models.py:42
+#: models.py:67
+msgid "Gender"
+msgstr "Sexo"
+
+#: models.py:71
+msgid "Schooling"
+msgstr "Escolaridade"
+
+#: models.py:75
+msgid "Birthdate"
+msgstr "Nascimento"
+
+#: models.py:79
 msgid "Candidate Number"
 msgstr "Número do Candidato"
 
-#: models.py:48
-msgid "Vice"
-msgstr "Vice"
-
-#: models.py:49
-msgid "Union"
-msgstr "Coligação"
-
-#: models.py:55 models.py:97
-msgid "Candidate"
-msgstr "Candidato"
-
-#: models.py:56
-msgid "Candidates"
-msgstr "Candidatos"
-
-#: models.py:63
-msgid "Year"
-msgstr "Ano"
-
-#: models.py:65
-msgid "Job"
-msgstr "Cargo"
-
-#: models.py:67
+#: models.py:89 models.py:154
 msgid "State"
 msgstr "Estado"
 
-#: models.py:71
+#: models.py:93
+msgid "Vice?"
+msgstr "Vice?"
+
+#: models.py:98
+msgid "Vice"
+msgstr "Vice"
+
+#: models.py:103
+msgid "Union"
+msgstr "Coligação"
+
+#: models.py:125 models.py:209
+msgid "Candidate"
+msgstr "Candidato"
+
+#: models.py:126
+msgid "Candidates"
+msgstr "Candidatos"
+
+#: models.py:145
+msgid "Year"
+msgstr "Ano"
+
+#: models.py:148
+msgid "Job"
+msgstr "Cargo"
+
+#: models.py:163
 msgid "Valid Votes"
 msgstr "Total de votos validos"
 
-#: models.py:73
+#: models.py:168
 msgid "Null Votes"
 msgstr "Total de votos nulos"
 
-#: models.py:75
+#: models.py:173
 msgid "Pending Votes"
 msgstr "Total de votos pendentes"
 
-#: models.py:79
+#: models.py:180
 msgid "Total Attendance"
 msgstr "Total apurado"
 
-#: models.py:81
+#: models.py:185
 msgid "Total Abstention"
 msgstr "Total abstenção"
 
-#: models.py:83
+#: models.py:190
 msgid "Total Voters"
 msgstr "Total de votos"
 
-#: models.py:86 models.py:96
+#: models.py:198 models.py:208
 msgid "Election"
 msgstr "Eleição"
 
-#: models.py:87 models.py:91
+#: models.py:199 models.py:203
 msgid "Elections"
 msgstr "Eleições"
 
-#: models.py:98
+#: models.py:210
 msgid "Total Appured"
 msgstr "Total de votos apurados"
 
-#: models.py:99
+#: models.py:211
 msgid "Total Votes"
 msgstr "Total de votos"
 
-#: models.py:100
+#: models.py:212
 msgid "Turn"
 msgstr "Turno"
 
-#: models.py:111
+#: models.py:214
+msgid "Is main?"
+msgstr "Principal?"
+
+#: models.py:226
 msgid "Vote"
 msgstr "Voto"
 
-#: models.py:112
+#: models.py:227
 msgid "Votes"
 msgstr "Total de votos"
