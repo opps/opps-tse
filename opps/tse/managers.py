@@ -229,7 +229,7 @@ class VoteQueryset(models.query.QuerySet):
     def featured(self):
         """
         """
-        return self.filter(candidate__is_featured=True)
+        return self.filter(is_featured=True)
 
 
 class VoteManager(models.Manager):
@@ -309,4 +309,4 @@ class VoteManager(models.Manager):
         """
         Retorna os candidatos da votação em destaque
         """
-        return self.filter(candidate__is_featured=True)
+        return self.get_queryset().featured()
