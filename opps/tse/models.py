@@ -8,11 +8,7 @@ from django.core.urlresolvers import reverse
 from opps.archives.models import get_file_path
 
 from opps.tse.managers import (
-    CandidateManager,
-    PoliticalPartyManager,
-    ElectionManager,
-    VoteManager
-)
+    CandidateManager, PoliticalPartyManager, ElectionManager, VoteManager)
 
 JOBS = (
     ('v', _('Councilman')),
@@ -26,41 +22,19 @@ JOBS = (
 
 
 class PoliticalParty(models.Model):
-    u"""
-    Portuguese:
-    Classe model para salvar os dados do partido
-    politico.
-
-    O campo slug refere-se a sigla partidária
-
-    English:
-
-    Needs translate here
-    """
     slug = models.CharField(
         verbose_name=_(u'Slug'),
         max_length=10
     )
-    u"""
-        Sigla partidária
-    """
-
     name = models.CharField(
         verbose_name=_(u'Name'),
         max_length=150
     )
-    u"""
-        Nome do partido politico
-    """
-
     number = models.PositiveIntegerField(
         verbose_name=_(u'Number'),
         blank=True,
         null=True
     )
-    u"""
-        Número da legenda partidaria
-    """
     image = models.FileField(
         upload_to=get_file_path,
         max_length=255,
@@ -68,9 +42,6 @@ class PoliticalParty(models.Model):
         null=True,
         blank=True
     )
-    u"""
-        Bandeira do partido
-    """
 
     objects = PoliticalPartyManager()
 
@@ -83,14 +54,6 @@ class PoliticalParty(models.Model):
 
 
 class Candidate(models.Model):
-    u"""
-    Portuguese:
-    Classe model para salvar os candidatos
-
-    English:
-
-    Needs translate here
-    """
     name = models.CharField(
         verbose_name=_(u'Name'),
         max_length=150
@@ -178,14 +141,6 @@ class Candidate(models.Model):
 
 
 class Election(models.Model):
-    u"""
-    Portuguese:
-    Classe model para salvar as eleicoes
-
-    English:
-
-    Needs translate here
-    """
     year = models.PositiveIntegerField(
         verbose_name=_(u'Year')
     )
