@@ -100,17 +100,17 @@ class Candidate(models.Model):
         blank=True,
         null=True
     )
-    sexo = models.CharField(
+    gender = models.CharField(
         verbose_name=_(u'Gender'),
         max_length=15
     )
     schooling = models.CharField(
         verbose_name=_(u'Schooling'),
-        max_length=30
+        max_length=100
     )
     birthdate = models.CharField(
         verbose_name=_(u'Birthdate'),
-        max_length=30
+        max_length=50
     )
     number = models.PositiveIntegerField(
         verbose_name=_(u'Candidate Number'),
