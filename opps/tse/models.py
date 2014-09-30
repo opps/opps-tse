@@ -3,6 +3,7 @@ from __future__ import unicode_literals
 
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
+from django.core.urlresolvers import reverse
 
 from opps.archives.models import get_file_path
 
@@ -99,6 +100,18 @@ class Candidate(models.Model):
         blank=True,
         null=True
     )
+    sexo = models.CharField(
+        verbose_name=_(u'Gender'),
+        max_length=15
+    )
+    schooling = models.CharField(
+        verbose_name=_(u'Schooling'),
+        max_length=30
+    )
+    birthdate = models.CharField(
+        verbose_name=_(u'Birthdate'),
+        max_length=30
+    )
     number = models.PositiveIntegerField(
         verbose_name=_(u'Candidate Number'),
         blank=True,
@@ -108,10 +121,6 @@ class Candidate(models.Model):
         verbose_name=_('Slug'),
         db_index=True,
         max_length=150
-    )
-    is_featured = models.BooleanField(
-        verbose_name=_('Is Featured?'),
-        default=False
     )
     state = models.CharField(
         verbose_name=_(u'State'),
@@ -156,6 +165,16 @@ class Candidate(models.Model):
 
     def __unicode__(self):
         return '{0} {1}'.format(self.name, self.number)
+
+    def get_absolute_url(self):
+        return reverse(
+            'eleicoes:detalhe-candidato',
+            kwargs={
+                'channel__long_slug': 'noticias/brasil/politica/eleicoes2014/'
+                                      'candidato',
+                'slug': self.slug
+            }
+        )
 
 
 class Election(models.Model):
@@ -236,6 +255,10 @@ class Vote(models.Model):
     appured = models.PositiveIntegerField(_('Total Appured'), default=0)
     votes = models.PositiveIntegerField(_('Total Votes'), default=0)
     turn = models.PositiveIntegerField(_('Turn'), default=1)
+    is_featured = models.BooleanField(
+        verbose_name=_('Is Featured?'),
+        default=False
+    )
     is_elected = models.BooleanField(default=False)
     objects = VoteManager()
 
