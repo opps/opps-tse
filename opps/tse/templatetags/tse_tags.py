@@ -30,10 +30,6 @@ def get_candidate(context, **kwargs):
 
 @register.assignment_tag()
 def get_candidates(**kwargs):
-    """
-    Retorna a lista de candidatos de acordo
-    com os parametos nomeados
-    """
     return Candidate.objects.filter(
         vote__election__job=kwargs.get('job', '')
     )
@@ -41,10 +37,6 @@ def get_candidates(**kwargs):
 
 @register.simple_tag()
 def get_channel_url_state(**kwargs):
-    """
-    Retorna o reverse do channel long slug
-    concatenado com o estado
-    """
     return reverse(
         'eleicoes:apuracao-estado',
         kwargs={
@@ -57,10 +49,6 @@ def get_channel_url_state(**kwargs):
 
 @register.simple_tag()
 def get_channel_result_president(**kwargs):
-    """
-    Retorna o reverse do channel long slug
-    concatenado com o estado
-    """
     return reverse(
         'eleicoes:eleicao-resultado-presidente',
         kwargs={
@@ -72,10 +60,6 @@ def get_channel_result_president(**kwargs):
 
 @register.simple_tag()
 def get_channel_url_complete_result(**kwargs):
-    """
-    Retorna o reverse do channel long slug
-    concatenado com o estado
-    """
     return reverse(
         'eleicoes:eleicao-resultado-cargo',
         kwargs={
