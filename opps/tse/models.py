@@ -192,6 +192,41 @@ class Election(models.Model):
 
     objects = ElectionManager()
 
+    @property
+    def percent_valid_vote(self):
+        try:
+            return (self.valid_votes/self.total_voters)*100
+        except:
+            return 0
+
+    @property
+    def percent_null_vote(self):
+        try:
+            return (self.null_votes/self.total_voters)*100
+        except:
+            return 0
+
+    @property
+    def percent_pending_vote(self):
+        try:
+            return (self.pending_votes/self.total_voters)*100
+        except:
+            return 0
+
+    @property
+    def percent_total_attendence(self):
+        try:
+            return (self.total_attendence/self.total_voters)*100
+        except:
+            return 0
+
+    @property
+    def percent_total_abstention(self):
+        try:
+            return (self.total_abstention/self.total_voters)*100
+        except:
+            return 0
+
     class Meta:
         verbose_name = _('Election')
         verbose_name_plural = _('Elections')
