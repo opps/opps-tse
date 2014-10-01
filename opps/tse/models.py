@@ -5,8 +5,6 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django.core.urlresolvers import reverse
 
-from opps.archives.models import get_file_path
-
 from opps.tse.managers import (
     CandidateManager, PoliticalPartyManager, ElectionManager, VoteManager)
 
@@ -36,7 +34,7 @@ class PoliticalParty(models.Model):
         null=True
     )
     image = models.FileField(
-        upload_to=get_file_path,
+        upload_to='tse/pp',
         max_length=255,
         verbose_name=_(u'Image'),
         null=True,
@@ -112,7 +110,7 @@ class Candidate(models.Model):
         null=True
     )
     image = models.FileField(
-        upload_to=get_file_path,
+        upload_to='tse/candidates',
         max_length=255,
         verbose_name=_(u'Image'),
         null=True,

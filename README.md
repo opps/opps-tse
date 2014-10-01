@@ -35,3 +35,13 @@ from opps.tse.tasks import populate
 # execute
 populate()
 ```
+
+### Settings
+
+```
+
+OPPS_TSE_WEBSERVICE_PATH = '/path/to/2014/divulgacao/simulado/4464/distribuicao/'
+
+OPPS_TSE_CANDIDATES_PHOTOS_DIRECTORY = '/path/to/foto_cand2014_div/'
+
+```
