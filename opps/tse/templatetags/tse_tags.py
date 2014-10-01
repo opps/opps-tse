@@ -2,9 +2,9 @@
 from __future__ import unicode_literals
 
 from django.template import Library
-from django.db.models import Q
+from django.core.urlresolvers import reverse
 
-from opps.tse.models import Election, Candidate, Vote
+from opps.tse.models import Election, Candidate
 
 register = Library()
 
@@ -36,4 +36,52 @@ def get_candidates(**kwargs):
     """
     return Candidate.objects.filter(
         vote__election__job=kwargs.get('job', '')
+    )
+
+
+@register.simple_tag()
+def get_channel_url_state(**kwargs):
+    """
+    Retorna o reverse do channel long slug
+    concatenado com o estado
+    """
+    return reverse(
+        'eleicoes:apuracao-estado',
+        kwargs={
+            'channel__long_slug': 'noticias/brasil/politica/eleicoes2014/'
+                                  'apuracao',
+            'uf': kwargs.get('state')
+        }
+    )
+
+
+@register.simple_tag()
+def get_channel_result_president(**kwargs):
+    """
+    Retorna o reverse do channel long slug
+    concatenado com o estado
+    """
+    return reverse(
+        'eleicoes:eleicao-resultado-presidente',
+        kwargs={
+            'channel__long_slug': 'noticias/brasil/politica/eleicoes2014/'
+                                  'resultado-geral',
+        }
+    )
+
+
+@register.simple_tag()
+def get_channel_url_complete_result(**kwargs):
+    """
+    Retorna o reverse do channel long slug
+    concatenado com o estado
+    """
+    return reverse(
+        'eleicoes:eleicao-resultado-cargo',
+        kwargs={
+            'channel__long_slug': 'noticias/brasil/politica/eleicoes2014/'
+                                  'resultado-geral',
+            'uf': kwargs.get('state'),
+            'jobs': kwargs.get('jobs')
+        }
     )
