@@ -5,8 +5,6 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django.core.urlresolvers import reverse
 
-from opps.archives.models import get_file_path
-
 from opps.tse.managers import (
     CandidateManager, PoliticalPartyManager, ElectionManager, VoteManager)
 
@@ -36,7 +34,7 @@ class PoliticalParty(models.Model):
         null=True
     )
     image = models.FileField(
-        upload_to=get_file_path,
+        upload_to='tse/pp',
         max_length=255,
         verbose_name=_(u'Image'),
         null=True,
@@ -112,7 +110,7 @@ class Candidate(models.Model):
         null=True
     )
     image = models.FileField(
-        upload_to=get_file_path,
+        upload_to='tse/candidates',
         max_length=255,
         verbose_name=_(u'Image'),
         null=True,
@@ -193,6 +191,41 @@ class Election(models.Model):
     )
 
     objects = ElectionManager()
+
+    @property
+    def percent_valid_vote(self):
+        try:
+            return (self.valid_votes/self.total_voters)*100
+        except:
+            return 0
+
+    @property
+    def percent_null_vote(self):
+        try:
+            return (self.null_votes/self.total_voters)*100
+        except:
+            return 0
+
+    @property
+    def percent_pending_vote(self):
+        try:
+            return (self.pending_votes/self.total_voters)*100
+        except:
+            return 0
+
+    @property
+    def percent_total_attendence(self):
+        try:
+            return (self.total_attendence/self.total_voters)*100
+        except:
+            return 0
+
+    @property
+    def percent_total_abstention(self):
+        try:
+            return (self.total_abstention/self.total_voters)*100
+        except:
+            return 0
 
     class Meta:
         verbose_name = _('Election')
