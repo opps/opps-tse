@@ -77,11 +77,10 @@ def get_channel_url_complete_result(**kwargs):
     concatenado com o estado
     """
     return reverse(
-        'eleicoes:eleicao-resultado-cargo',
+        'eleicoes:eleicao-resultado-estado-cargo',
         kwargs={
-            'channel__long_slug': 'noticias/brasil/politica/eleicoes2014/'
-                                  'resultado-geral',
+            'channel__long_slug': 'noticias/brasil/politica/eleicoes2014/resultado-geral',
             'uf': kwargs.get('state'),
-            'jobs': kwargs.get('jobs')
+            'jobs': kwargs.get('jobs'),
         }
     )
