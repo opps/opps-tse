@@ -1,8 +1,11 @@
 # -*- coding:utf-8 -*-
 from __future__ import unicode_literals
 
+import os
+import zipfile
+
 from django.conf import settings
-from opps.tse.actions import parse_candidates_csv, parse_party_csv
+from opps.tse.actions import parse_candidates_csv, parse_party_csv, parse_xml
 from opps.tse.models import Election
 from opps.tse import (
     OPPS_TSE_CANDIDATES_CSV_URL,
@@ -14,6 +17,20 @@ OPPS_TSE_CANDIDATES_PHOTOS_DIRECTORY = getattr(
     settings,
     'OPPS_TSE_CANDIDATES_PHOTOS_DIRECTORY',
     '')
+
+OPPS_TSE_ELECTIONS_JOBS = getattr(
+    settings,
+    'OPPS_TSE_ELECTIONS_JOBS',
+    ['0001', '0003', '0005', '0006', '0007', '0008']
+)
+
+OPPS_TSE_WEBSERVICE_PATH = getattr(
+    settings,
+    'OPPS_TSE_WEBSERVICE_PATH',
+    '/home/path/to/2014/divulgacao/oficial/1431/distribuicao/'
+)
+
+OPPS_TSE_NUMBER = getattr(settings, 'OPPS_TSE_NUMBER', '001431')
 
 
 def populate_candidates():
@@ -40,3 +57,22 @@ def populate():
     populate_party()
     populate_jobs()
     populate_candidates()
+
+
+def update_votes():
+    for slug in list(slugs) + ['BR']:
+        path = OPPS_TSE_WEBSERVICE_PATH + slug
+        election = OPPS_TSE_NUMBER
+        for root, dir, files in os.walk(path):
+            for job in OPPS_TSE_ELECTIONS_JOBS:
+                zipname = '{}-{}-e{}.zip'.format(slug, job, election)
+                file = file(os.path.join(path, zipname), "r")
+                zip = zipfile.ZipFile(file)
+                # open and parse the .xml file inside the zip
+                xml = parse_xml(zip.open(zipname[:-4]+'.xml'))
+                info = xml['Resultado']['Abrangencia']
+                # set Election model
+                candidates = xml['Resultado']['Abrangencia']['VotoCandidato']
+                for candidate in candidates:
+                    # set Votel model
+                    pass

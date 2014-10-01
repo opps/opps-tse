@@ -6,8 +6,8 @@ from setuptools import setup, find_packages
 from opps import tse
 
 
-install_requires = ["opps", "requests>=2.2.0",
-                    "unidecode", "unicodecsv"]
+install_requires = ["opps", "requests>=2.2.0", "unidecode",
+                    "unicodecsv", "xmltodict"]
 
 classifiers = ["Development Status :: 4 - Beta",
                "Intended Audience :: Developers",
