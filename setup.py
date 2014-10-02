@@ -7,7 +7,7 @@ from opps import tse
 
 
 install_requires = ["opps", "requests>=2.2.0", "unidecode",
-                    "unicodecsv", "xmltodict"]
+                    "unicodecsv", "xmltodict", "django-uuslug", "south==1.0"]
 
 classifiers = ["Development Status :: 4 - Beta",
                "Intended Audience :: Developers",
