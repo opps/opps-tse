@@ -121,10 +121,10 @@ def parse_candidates_csv(url, photo_directory):
                 c.name = candidate['name']
                 c.bio = candidate['bio']
                 c.political_party = candidate['political_party']
-                c.union = candidate['union'],
-                c.gender = candidate['gender'],
-                c.schooling = candidate['schooling'],
-                c.birthdate = candidate['birthdate'],
+                c.union = candidate['union']
+                c.gender = candidate['gender']
+                c.schooling = candidate['schooling']
+                c.birthdate = candidate['birthdate']
                 c.slug = candidate['slug']
                 c.save()
             except Exception, e:
