@@ -5,6 +5,8 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django.core.urlresolvers import reverse
 
+from uuslug import uuslug
+
 from opps.tse.managers import (
     CandidateManager, PoliticalPartyManager, ElectionManager, VoteManager)
 
@@ -129,6 +131,12 @@ class Candidate(models.Model):
 
     def __unicode__(self):
         return '{0} {1}'.format(self.name, self.number)
+
+    def save(self, *args, **kwargs):
+
+        slug = '{0} {1}'.format(self.name, self.number)
+        self.slug = uuslug(slug, instance=self, start_no=1, separator="-")
+        super(Candidate, self).save(*args, **kwargs)
 
     def get_absolute_url(self):
         return reverse(
