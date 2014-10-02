@@ -85,15 +85,18 @@ def parse_candidates_csv(url, photo_directory):
             candidate = format_candidates_csv(line)
             if not candidate:
                 continue
-            c, created = Candidate.objects.get_or_create(
-                number=candidate['number'],
-                name=candidate['name'],
-                state=candidate['state'],
-                union=candidate['union'],
-                gender=candidate['gender'],
-                schooling=candidate['schooling'],
-                birthdate=candidate['birthdate'],
-            )
+            try:
+                c, created = Candidate.objects.get_or_create(
+                    number=candidate['number'],
+                    name=candidate['name'],
+                    state=candidate['state'],
+                    union=candidate['union'],
+                    gender=candidate['gender'],
+                    schooling=candidate['schooling'],
+                    birthdate=candidate['birthdate'],
+                )
+            except:
+                continue
 
             if photo_directory:
                 process_upload_image(
