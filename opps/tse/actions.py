@@ -11,7 +11,6 @@ from unidecode import unidecode
 
 from opps.tse.models import PoliticalParty, Candidate, Election
 
-from django.template.defaultfilters import slugify
 from django.core.files import File
 from django.db import transaction, DatabaseError
 
@@ -68,7 +67,6 @@ def format_candidates_csv(line):
         'name': line[13],
         'number': line[12],
         'political_party': party,
-        'slug': slugify('{0}-{1}'.format(line[13], line[12])),
         'gender': line[29],
         'schooling': line[31],
         'birthdate': line[25],
@@ -126,7 +124,6 @@ def parse_candidates_csv(url, photo_directory):
                 c.gender = candidate['gender']
                 c.schooling = candidate['schooling']
                 c.birthdate = candidate['birthdate']
-                c.slug = candidate['slug']
                 c.save()
             except Exception, e:
                 print e
