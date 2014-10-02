@@ -195,7 +195,7 @@ class VoteQueryset(models.query.QuerySet):
         return self.order_by('-votes')
 
     def main(self):
-        return self.filter(is_main=True)
+        return self.order_by('-is_main')
 
 
 class VoteManager(models.Manager):
