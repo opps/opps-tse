@@ -149,3 +149,16 @@ def parse_xml(path):
     with open(path) as fd:
         obj = xmltodict.parse(fd.read())
     return obj['Resultado']
+
+
+def get_job_label(job):
+    if job == '0001':
+        return 'ps'
+    if job == '0003':
+        return 'g'
+    if job == '0005':
+        return 's'
+    if job == '0006':
+        return 'df'
+    if job == '0007':
+        return 'de'

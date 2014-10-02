@@ -5,8 +5,9 @@ import os
 import zipfile
 
 from django.conf import settings
-from opps.tse.actions import parse_candidates_csv, parse_party_csv, parse_xml
-from opps.tse.models import Election
+from opps.tse.actions import (
+    parse_candidates_csv, parse_party_csv, parse_xml, get_job_label)
+from opps.tse.models import Election, Vote
 from opps.tse import (
     OPPS_TSE_CANDIDATES_CSV_URL,
     OPPS_TSE_POLITICAL_PARTY_CSV,
@@ -60,19 +61,43 @@ def populate():
 
 
 def update_votes():
+    """
+    Parse TSE XML and get all vote count for candidates
+    """
     for slug in list(slugs) + ['BR']:
         path = OPPS_TSE_WEBSERVICE_PATH + slug
         election = OPPS_TSE_NUMBER
         for root, dir, files in os.walk(path):
             for job in OPPS_TSE_ELECTIONS_JOBS:
+                job_label = get_job_label(job)
                 zipname = '{}-{}-e{}.zip'.format(slug, job, election)
-                file = file(os.path.join(path, zipname), "r")
+                try:
+                    file = file(os.path.join(path, zipname), "r")
+                except:
+                    continue
                 zip = zipfile.ZipFile(file)
                 # open and parse the .xml file inside the zip
                 xml = parse_xml(zip.open(zipname[:-4]+'.xml'))
                 info = xml['Resultado']['Abrangencia']
                 # set Election model
+                if job is 'ps':
+                    e = Election.objects.get(job=job_label)
+                else:
+                    e = Election.objects.get(job=job_label, state=slug)
+                e.valid_votes = info['@votosTotalizados']
+                e.null_votes = info['@votosNulos']
+                e.pending_votes = info['@votosPendentes']
+                e.total_attendance = info['@comparecimento']
+                e.total_abstention = info['@abstencao']
+                e.save()
+
                 candidates = xml['Resultado']['Abrangencia']['VotoCandidato']
                 for candidate in candidates:
                     # set Votel model
-                    pass
+                    n = candidate['@numeroCandidato']
+                    v = Vote.objects.get(election=e, candidate__number=n)
+                    v.appured = info['@votosTotalizados']
+                    v.votes = candidate['@totalVotos']
+                    if candidate['@eleito'] == 'S':
+                        v.is_elected = True
+                    v.save()
