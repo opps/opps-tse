@@ -22,22 +22,22 @@ JOBS = (
 
 class PoliticalParty(models.Model):
     slug = models.CharField(
-        verbose_name=_(u'Slug'),
+        verbose_name=_('Slug'),
         max_length=10
     )
     name = models.CharField(
-        verbose_name=_(u'Name'),
+        verbose_name=_('Name'),
         max_length=150
     )
     number = models.PositiveIntegerField(
-        verbose_name=_(u'Number'),
+        verbose_name=_('Number'),
         blank=True,
         null=True
     )
     image = models.FileField(
         upload_to='tse/pp',
         max_length=255,
-        verbose_name=_(u'Image'),
+        verbose_name=_('Image'),
         null=True,
         blank=True
     )
@@ -54,34 +54,35 @@ class PoliticalParty(models.Model):
 
 class Candidate(models.Model):
     name = models.CharField(
-        verbose_name=_(u'Name'),
+        verbose_name=_('Name'),
         max_length=150
     )
     bio = models.TextField(
-        verbose_name=_(u'Bio'),
+        verbose_name=_('Bio'),
         blank=True,
         null=True
     )
     gender = models.CharField(
-        verbose_name=_(u'Gender'),
+        verbose_name=_('Gender'),
         max_length=15
     )
     schooling = models.CharField(
-        verbose_name=_(u'Schooling'),
+        verbose_name=_('Schooling'),
         max_length=100
     )
     birthdate = models.CharField(
-        verbose_name=_(u'Birthdate'),
+        verbose_name=_('Birthdate'),
         max_length=50
     )
     number = models.PositiveIntegerField(
-        verbose_name=_(u'Candidate Number'),
+        verbose_name=_('Candidate Number'),
         blank=True,
         null=True
     )
     slug = models.SlugField(
         verbose_name=_('Slug'),
         db_index=True,
+        unique=True,
         max_length=150
     )
     state = models.CharField(
@@ -156,6 +157,10 @@ class Election(models.Model):
         null=True,
         db_index=True
     )
+    version = models.CharField(
+        verbose_name=_('Version'),
+        max_length=100
+    )
 
     # global stats for votes
     valid_votes = models.PositiveIntegerField(
@@ -170,6 +175,11 @@ class Election(models.Model):
     )
     pending_votes = models.PositiveIntegerField(
         verbose_name=_('Pending Votes'),
+        null=True,
+        blank=True
+    )
+    blank_votes = models.PositiveIntegerField(
+        verbose_name=_('Blank Votes'),
         null=True,
         blank=True
     )

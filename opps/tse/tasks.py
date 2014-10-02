@@ -86,9 +86,11 @@ def update_votes():
                     e = Election.objects.get(job=job_label, state=slug)
                 e.valid_votes = info['@votosTotalizados']
                 e.null_votes = info['@votosNulos']
+                e.blank_votes = info['@votosEmBranco']
                 e.pending_votes = info['@votosPendentes']
                 e.total_attendance = info['@comparecimento']
                 e.total_abstention = info['@abstencao']
+                e.version = info['nomeArquivoDadosFixos']
                 e.save()
 
                 candidates = xml['Resultado']['Abrangencia']['VotoCandidato']
