@@ -96,11 +96,13 @@ def parse_candidates_csv(url, photo_directory):
             candidate = format_candidates_csv(line)
             if not candidate:
                 continue
+            c = None
             try:
                 c, created = Candidate.objects.get_or_create(
                     number=candidate['number'],
                     name=candidate['name'],
                     state=candidate['state'],
+                    commit=True,
                 )
             except:
                 pass

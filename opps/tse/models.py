@@ -23,6 +23,7 @@ JOBS = (
 class PoliticalParty(models.Model):
     slug = models.CharField(
         verbose_name=_('Slug'),
+        unique=True,
         max_length=10
     )
     name = models.CharField(
@@ -81,6 +82,7 @@ class Candidate(models.Model):
     )
     slug = models.SlugField(
         verbose_name=_('Slug'),
+        unique=True,
         db_index=True,
         max_length=150
     )
