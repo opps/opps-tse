@@ -102,7 +102,6 @@ def parse_candidates_csv(url, photo_directory):
                     number=candidate['number'],
                     name=candidate['name'],
                     state=candidate['state'],
-                    commit=True,
                 )
             except:
                 pass
