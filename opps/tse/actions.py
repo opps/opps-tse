@@ -20,28 +20,27 @@ from os.path import isfile, join
 
 def format_candidates_csv(line):
     try:
-        pp = line[17].replace(' ', '')
+        pol = line[17].replace(' ', '')
     except:
         return False
     print line
-    pp = PoliticalParty.objects.get(slug=pp)
+    party = PoliticalParty.objects.get(slug=pol)
     year = line[2]
     state = line[5]
     job = line[9]
 
-    if job == 'DEPUTADO ESTADUAL':
-        job = 'de'
-    if job == 'DEPUTADO FEDERAL':
-        job = 'df'
-    if job == 'DEPUTADO DISTRITAL':
-        job = 'dd'
-    if job == 'GOVERNADOR':
-        job = 'g'
-    if job == 'SENADOR':
-        job = 's'
-    if job == 'PRESIDENTE':
-        job = 'ps'
-        state = ''
+    jobs = {
+        'DEPUTADO ESTADUAL': 'de',
+        'DEPUTADO FEDERAL': 'df',
+        'DEPUTADO DISTRITAL': 'dd',
+        'GOVERNADOR': 'g',
+        'SENADOR': 's',
+        'PRESIDENTE': 'ps'
+    }
+    try:
+        job = jobs[job]
+    except:
+        return False
 
     try:
         if job == 'ps':
@@ -56,7 +55,7 @@ def format_candidates_csv(line):
     return {
         'name': line[13],
         'number': line[12],
-        'political_party': pp,
+        'political_party': party,
         'slug': slugify('{0}-{1}'.format(line[13], line[12])),
         'gender': line[29],
         'schooling': line[31],
@@ -90,12 +89,11 @@ def parse_candidates_csv(url, photo_directory):
                     number=candidate['number'],
                     name=candidate['name'],
                     state=candidate['state'],
-                    union=candidate['union'],
-                    gender=candidate['gender'],
-                    schooling=candidate['schooling'],
-                    birthdate=candidate['birthdate'],
                 )
             except:
+                pass
+
+            if not c:
                 continue
 
             if photo_directory:
@@ -111,10 +109,15 @@ def parse_candidates_csv(url, photo_directory):
                 c.name = candidate['name']
                 c.bio = candidate['bio']
                 c.political_party = candidate['political_party']
+                c.union = candidate['union'],
+                c.gender = candidate['gender'],
+                c.schooling = candidate['schooling'],
+                c.birthdate = candidate['birthdate'],
                 c.slug = candidate['slug']
                 c.save()
             except Exception, e:
                 print e
+                pass
 
 
 def parse_party_csv(url):
@@ -157,15 +160,12 @@ def parse_xml(path):
 
 
 def get_job_label(job):
-    if job == '0001':
-        return 'ps'
-    if job == '0003':
-        return 'g'
-    if job == '0005':
-        return 's'
-    if job == '0006':
-        return 'df'
-    if job == '0007':
-        return 'de'
-    if job == '0008':
-        return 'dd'
+    jobs = {
+        '0001': 'ps',
+        '0003': 'g',
+        '0005': 's',
+        '0006': 'df',
+        '0007': 'de',
+        '0008': 'dd'
+    }
+    return jobs[job]

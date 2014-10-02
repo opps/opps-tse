@@ -9,10 +9,7 @@ from opps.tse.actions import (
     parse_candidates_csv, parse_party_csv, parse_xml, get_job_label)
 from opps.tse.models import Election, Vote
 from opps.tse import (
-    OPPS_TSE_CANDIDATES_CSV_URL,
-    OPPS_TSE_POLITICAL_PARTY_CSV,
-    slugs
-)
+    OPPS_TSE_CANDIDATES_CSV_URL, OPPS_TSE_POLITICAL_PARTY_CSV, slugs)
 
 OPPS_TSE_CANDIDATES_PHOTOS_DIRECTORY = getattr(
     settings,
@@ -55,6 +52,9 @@ def populate_party():
 
 
 def populate():
+    """
+    Populate database
+    """
     populate_party()
     populate_jobs()
     populate_candidates()

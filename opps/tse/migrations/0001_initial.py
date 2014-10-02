@@ -11,7 +11,7 @@ class Migration(SchemaMigration):
         # Adding model 'PoliticalParty'
         db.create_table(u'tse_politicalparty', (
             (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('slug', self.gf('django.db.models.fields.CharField')(max_length=10)),
+            ('slug', self.gf('django.db.models.fields.CharField')(unique=True, max_length=10)),
             ('name', self.gf('django.db.models.fields.CharField')(max_length=150)),
             ('number', self.gf('django.db.models.fields.PositiveIntegerField')(null=True, blank=True)),
             ('image', self.gf('django.db.models.fields.files.FileField')(max_length=255, null=True, blank=True)),
@@ -121,7 +121,7 @@ class Migration(SchemaMigration):
             'image': ('django.db.models.fields.files.FileField', [], {'max_length': '255', 'null': 'True', 'blank': 'True'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '150'}),
             'number': ('django.db.models.fields.PositiveIntegerField', [], {'null': 'True', 'blank': 'True'}),
-            'slug': ('django.db.models.fields.CharField', [], {'max_length': '10'})
+            'slug': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '10'})
         },
         u'tse.vote': {
             'Meta': {'object_name': 'Vote'},

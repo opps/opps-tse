@@ -82,7 +82,6 @@ class Candidate(models.Model):
     slug = models.SlugField(
         verbose_name=_('Slug'),
         db_index=True,
-        unique=True,
         max_length=150
     )
     state = models.CharField(
