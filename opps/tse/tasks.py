@@ -42,7 +42,7 @@ def populate_candidates():
 
 
 def populate_jobs(year=2014):
-    jobs = ('de', 'df', 'g', 's')
+    jobs = ('de', 'df', 'dd', 'g', 's')
     print '[Populate jobs and elections]'
     for j in jobs:
         for s in slugs:

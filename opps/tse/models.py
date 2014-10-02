@@ -13,6 +13,7 @@ JOBS = (
     ('p', _('Mayor')),
     ('de', _('State Representative')),
     ('df', _('Congressman')),
+    ('dd', _('District')),
     ('g', _('Governor')),
     ('s', _('Senator')),
     ('ps', _('President')),

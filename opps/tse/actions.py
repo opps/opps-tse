@@ -33,6 +33,8 @@ def format_candidates_csv(line):
         job = 'de'
     if job == 'DEPUTADO FEDERAL':
         job = 'df'
+    if job == 'DEPUTADO DISTRITAL':
+        job = 'dd'
     if job == 'GOVERNADOR':
         job = 'g'
     if job == 'SENADOR':
@@ -162,3 +164,5 @@ def get_job_label(job):
         return 'df'
     if job == '0007':
         return 'de'
+    if job == '0008':
+        return 'dd'
