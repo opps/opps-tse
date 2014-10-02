@@ -10,7 +10,7 @@ class CandidateAdmin(admin.ModelAdmin):
 
     list_filter = ('political_party', )
 
-    raw_id_fields = ['vice', ]
+    raw_id_fields = ['vice', 'political_party']
 
     list_display = (
         'name', 'slug', 'number', 'union', 'political_party'
@@ -49,6 +49,8 @@ class VoteAdmin(admin.ModelAdmin):
         'candidate',
         'votes',
     ]
+
+    raw_id_fields = ['election', 'candidate']
 
     list_display = (
         'election', 'turn', 'candidate',
