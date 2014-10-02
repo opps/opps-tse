@@ -5,6 +5,7 @@ import os
 import requests
 import zipfile
 import StringIO
+import xmltodict
 import unicodecsv as csv
 from unidecode import unidecode
 
@@ -131,13 +132,10 @@ def parse_party_csv(url):
 
 def process_upload_image(info, candidate, directory):
     """
-    Processa o upload de imagens
-    :param info: Contem informacoes do candidato resgatado da função
-    format_candidate_csv
-    :param candidate: instancia do model Candidate
-    :param directory: Diretório onde foi extraido os arquivos
+    :param info: format_candidate_csv object
+    :param candidate: Candidate instance
+    :param directory: string folder path
     """
-
     files = [f for f in listdir(directory) if isfile(join(directory, f))]
 
     image = info.get('image_name')
@@ -145,3 +143,22 @@ def process_upload_image(info, candidate, directory):
         f = File(open(os.path.join(directory, image), 'r'))
         candidate.image.save(image, f)
         candidate.save()
+
+
+def parse_xml(path):
+    with open(path) as fd:
+        obj = xmltodict.parse(fd.read())
+    return obj['Resultado']
+
+
+def get_job_label(job):
+    if job == '0001':
+        return 'ps'
+    if job == '0003':
+        return 'g'
+    if job == '0005':
+        return 's'
+    if job == '0006':
+        return 'df'
+    if job == '0007':
+        return 'de'

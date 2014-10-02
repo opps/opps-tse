@@ -140,16 +140,16 @@ class Candidate(models.Model):
 
 class Election(models.Model):
     year = models.PositiveIntegerField(
-        verbose_name=_(u'Year')
+        verbose_name=_('Year')
     )
     job = models.CharField(
-        verbose_name=_(u'Job'),
+        verbose_name=_('Job'),
         db_index=True,
         max_length=2,
         choices=JOBS
     )
     state = models.CharField(
-        verbose_name=_(u'State'),
+        verbose_name=_('State'),
         max_length=2,
         blank=True,
         null=True,
