@@ -1,6 +1,6 @@
 # -*- coding:utf-8 -*-
 from __future__ import unicode_literals
-
+import logging
 import os
 import requests
 import zipfile
@@ -13,9 +13,13 @@ from opps.tse.models import PoliticalParty, Candidate, Election
 
 from django.template.defaultfilters import slugify
 from django.core.files import File
+from django.db import transaction, DatabaseError
 
 from os import listdir
 from os.path import isfile, join
+
+
+logger = logging.getLogger(__name__)
 
 
 def format_candidates_csv(line):
@@ -24,7 +28,15 @@ def format_candidates_csv(line):
     except:
         return False
     print line
-    party = PoliticalParty.objects.get(slug=pol)
+
+    try:
+        party = PoliticalParty.objects.get(slug=pol)
+    except DatabaseError:
+        try:
+            transaction.rollback()
+        except transaction.TransactionManagementError, e:
+            logger.error("Error in get political party {0}".format(e))
+
     year = line[2]
     state = line[5]
     job = line[9]
