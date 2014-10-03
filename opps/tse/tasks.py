@@ -110,7 +110,21 @@ def update_votes():
                         e.job, candidate['@numeroCandidato'])
                     # set Votel model
                     n = candidate['@numeroCandidato']
-                    v = Vote.objects.get(election=e, candidate__number=n)
+                    v = Vote.objects.filter(
+                        election=e,
+                        candidate__number=n)
+                    if len(v) == 1:
+                        v = v[0]
+                    try:
+                        v = v.get(candidate__is_active=True)
+                    except:
+                        pass
+
+                    try:
+                        v = v[1]
+                    except:
+                        pass
+
                     v.appured = info['@votosTotalizados']
                     v.votes = candidate['@totalVotos']
                     if candidate['@eleito'] == 'S':
