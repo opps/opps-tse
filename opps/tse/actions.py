@@ -164,8 +164,7 @@ def process_upload_image(info, candidate, directory):
 
 
 def parse_xml(path):
-    with open(path) as fd:
-        obj = xmltodict.parse(fd.read())
+    obj = xmltodict.parse(path.read())
     return obj['Resultado']
 
 
