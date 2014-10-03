@@ -125,6 +125,12 @@ def update_votes():
                     except:
                         pass
 
+                    if not v:
+                        print '{} {}'.format(e.job, n)
+                        continue
+
+                    print v
+
                     v.appured = info['@votosTotalizados']
                     v.votes = candidate['@totalVotos']
                     if candidate['@eleito'] == 'S':
