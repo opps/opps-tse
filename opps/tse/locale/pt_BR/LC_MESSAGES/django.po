@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: opps-tse\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-10-01 22:21-0300\n"
+"POT-Creation-Date: 2014-10-03 12:39-0300\n"
 "PO-Revision-Date: 2014-09-24 22:00-0300\n"
 "Last-Translator:  Igor P. Leroy <ip.leroy@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/projects/p/opps-"
@@ -21,174 +21,178 @@ msgstr ""
 msgid "Parameter was invalid!Accepts 1 or 2 values."
 msgstr "Parametro inválido! Aceita o valor 1 ou 2."
 
-#: models.py:12
+#: models.py:14
 msgid "Councilman"
 msgstr "Vereador"
 
-#: models.py:13
+#: models.py:15
 msgid "Mayor"
 msgstr "Prefeito"
 
-#: models.py:14
+#: models.py:16
 msgid "State Representative"
 msgstr "Deputado Estadual"
 
-#: models.py:15
+#: models.py:17
 msgid "Congressman"
 msgstr "Deputado Federal"
 
-#: models.py:16
+#: models.py:18
 msgid "District"
 msgstr "Deputado Distrital"
 
-#: models.py:17
+#: models.py:19
 msgid "Governor"
 msgstr "Governador"
 
-#: models.py:18
+#: models.py:20
 msgid "Senator"
 msgstr "Senador"
 
-#: models.py:19
+#: models.py:21
 msgid "President"
 msgstr "Presidente"
 
-#: models.py:25 models.py:83
+#: models.py:27 models.py:86
 msgid "Slug"
 msgstr "Slug"
 
-#: models.py:29 models.py:57
+#: models.py:32 models.py:60
 msgid "Name"
 msgstr "Nome"
 
-#: models.py:33
+#: models.py:36
 msgid "Number"
 msgstr "Número"
 
-#: models.py:40 models.py:117
+#: models.py:43 models.py:120
 msgid "Image"
 msgstr "Imagem"
 
-#: models.py:48 models.py:110
+#: models.py:51 models.py:113
 msgid "Political Party"
 msgstr "Partido Político"
 
-#: models.py:49
+#: models.py:52
 msgid "Political Parties"
 msgstr "Partidos Políticos"
 
-#: models.py:61
+#: models.py:64
 msgid "Bio"
 msgstr "Biografia"
 
-#: models.py:66
+#: models.py:69
 msgid "Gender"
 msgstr "Sexo"
 
-#: models.py:70
+#: models.py:73
 msgid "Schooling"
 msgstr "Escolaridade"
 
-#: models.py:74
+#: models.py:77
 msgid "Birthdate"
 msgstr "Nascimento"
 
-#: models.py:78
+#: models.py:81
 msgid "Candidate Number"
 msgstr "Número do Candidato"
 
-#: models.py:89 models.py:154
+#: models.py:92 models.py:163
 msgid "State"
 msgstr "Estado"
 
-#: models.py:93
+#: models.py:96
 msgid "Vice?"
 msgstr "Vice?"
 
-#: models.py:98
+#: models.py:101
 msgid "Vice"
 msgstr "Vice"
 
-#: models.py:103
+#: models.py:106
 msgid "Union"
 msgstr "Coligação"
 
-#: models.py:125 models.py:253
+#: models.py:128 models.py:262
 msgid "Candidate"
 msgstr "Candidato"
 
-#: models.py:126
+#: models.py:129
 msgid "Candidates"
 msgstr "Candidatos"
 
-#: models.py:145
+#: models.py:154
 msgid "Year"
 msgstr "Ano"
 
-#: models.py:148
+#: models.py:157
 msgid "Job"
 msgstr "Cargo"
 
-#: models.py:161
+#: models.py:170
 msgid "Version"
 msgstr "Versão"
 
-#: models.py:167
+#: models.py:176
 msgid "Valid Votes"
 msgstr "Total de votos validos"
 
-#: models.py:172
+#: models.py:181
 msgid "Null Votes"
 msgstr "Total de votos nulos"
 
-#: models.py:177
+#: models.py:186
 msgid "Pending Votes"
 msgstr "Total de votos pendentes"
 
-#: models.py:182
+#: models.py:191
 msgid "Blank Votes"
 msgstr "Total de votos em branco"
 
-#: models.py:189
+#: models.py:198
 msgid "Total Attendance"
 msgstr "Total apurado"
 
-#: models.py:194
+#: models.py:203
 msgid "Total Abstention"
 msgstr "Total abstenção"
 
-#: models.py:199
+#: models.py:208
 msgid "Total Voters"
 msgstr "Total de votos"
 
-#: models.py:242 models.py:252
+#: models.py:251 models.py:261
 msgid "Election"
 msgstr "Eleição"
 
-#: models.py:243 models.py:247
+#: models.py:252 models.py:256
 msgid "Elections"
 msgstr "Eleições"
 
-#: models.py:254
+#: models.py:263
 msgid "Total Appured"
 msgstr "Total de votos apurados"
 
-#: models.py:255
+#: models.py:264
 msgid "Total Votes"
 msgstr "Total de votos"
 
-#: models.py:256
+#: models.py:265
 msgid "Turn"
 msgstr "Turno"
 
-#: models.py:258
+#: models.py:267
 msgid "Is main?"
 msgstr "Principal?"
 
-#: models.py:270
+#: models.py:269
+msgid "Is elected?"
+msgstr "Eleito?"
+
+#: models.py:280
 msgid "Vote"
 msgstr "Voto"
 
-#: models.py:271
+#: models.py:281
 msgid "Votes"
 msgstr "Votos"

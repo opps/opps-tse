@@ -265,7 +265,8 @@ class Vote(models.Model):
     turn = models.PositiveIntegerField(_('Turn'), default=1)
     is_main = models.BooleanField(
         verbose_name=_('Is main?'), default=False)
-    is_elected = models.BooleanField(default=False)
+    is_elected = models.BooleanField(
+        verbose_name=_('Is elected?'), default=False)
     objects = VoteManager()
 
     @property
