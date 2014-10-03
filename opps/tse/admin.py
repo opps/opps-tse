@@ -8,12 +8,12 @@ class CandidateAdmin(admin.ModelAdmin):
 
     search_fields = ['name', 'number']
 
-    list_filter = ('political_party', )
+    list_filter = ('political_party', 'is_active')
 
     raw_id_fields = ['vice', 'political_party']
 
     list_display = (
-        'name', 'slug', 'number', 'union', 'political_party'
+        'name', 'slug', 'number', 'union', 'political_party', 'is_active'
     )
 
 

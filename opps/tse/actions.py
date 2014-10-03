@@ -39,7 +39,6 @@ def format_candidates_csv(line):
     year = line[2]
     state = line[5]
     job = line[9]
-
     jobs = {
         'DEPUTADO ESTADUAL': 'de',
         'DEPUTADO FEDERAL': 'df',
@@ -52,6 +51,11 @@ def format_candidates_csv(line):
         job = jobs[job]
     except:
         return False
+
+    is_active = False
+
+    if line[15] == 'DEFERIDO':
+        is_active = True
 
     try:
         if job == 'ps':
@@ -73,6 +77,7 @@ def format_candidates_csv(line):
         'bio': bio,
         'job': job,
         'election': election,
+        'is_active': is_active,
         'state': state,
         'union': line[21],
         'image_name': 'F{0}{1}.jpg'.format(state, line[11]),
@@ -124,6 +129,7 @@ def parse_candidates_csv(url, photo_directory):
                 c.gender = candidate['gender']
                 c.schooling = candidate['schooling']
                 c.birthdate = candidate['birthdate']
+                c.is_active = candidate['is_active']
                 c.save()
             except Exception, e:
                 print e
