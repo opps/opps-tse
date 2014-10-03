@@ -114,7 +114,7 @@ class Candidate(models.Model):
         blank=True,
         null=True
     )
-    image = models.FileField(
+    image = models.ImageField(
         upload_to='tse/candidates',
         max_length=255,
         verbose_name=_(u'Image'),
