@@ -6,7 +6,7 @@ from setuptools import setup, find_packages
 from opps import tse
 
 
-install_requires = ["opps", "requests>=2.2.0", "unidecode",
+install_requires = ["opps", "requests>=2.2.0", "unidecode", "celery",
                     "unicodecsv", "xmltodict", "django-uuslug", "south==1.0"]
 
 classifiers = ["Development Status :: 4 - Beta",

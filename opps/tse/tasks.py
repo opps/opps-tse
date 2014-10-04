@@ -4,8 +4,11 @@ from __future__ import unicode_literals
 import os
 import zipfile
 import logging
+import celery
 
 from django.conf import settings
+from django.utils import timezone
+
 from opps.tse.actions import (
     parse_candidates_csv, parse_party_csv, parse_xml, get_job_label)
 from opps.tse.models import Election, Vote
@@ -64,11 +67,11 @@ def populate():
     populate_candidates()
 
 
-def update_votes():
+def update_votes(states):
     """
     Parse TSE XML and get all vote count for candidates
     """
-    for slug in list(slugs) + ['BR']:
+    for slug in states:
         slug = slug.lower()
         path = OPPS_TSE_WEBSERVICE_PATH + slug
         election = OPPS_TSE_NUMBER
@@ -127,6 +130,7 @@ def update_votes():
 
                     if not v:
                         print '{} {}'.format(e.job, n)
+                        logger.error('ERROR: {} {}'.format(e.job, n))
                         continue
 
                     print v
@@ -136,3 +140,31 @@ def update_votes():
                     if candidate['@eleito'] == 'S':
                         v.is_elected = True
                     v.save()
+
+
+@celery.task.periodic_task(run_every=timezone.timedelta(minutes=2))
+def update_president():
+    update_votes(['BR'])
+
+
+@celery.task.periodic_task(run_every=timezone.timedelta(minutes=2))
+def update_sp_region():
+    update_votes(['SP'])
+
+
+@celery.task.periodic_task(run_every=timezone.timedelta(minutes=4))
+def update_southeast_region():
+    update_votes(['RJ', 'MG', 'ES'])
+
+
+@celery.task.periodic_task(run_every=timezone.timedelta(minutes=4))
+def update_south_region():
+    update_votes(['RS', 'PR', 'SC'])
+
+
+@celery.task.periodic_task(run_every=timezone.timedelta(minutes=6))
+def udpate_others_regions():
+    update_votes(
+        ['GO', 'MT', 'MS', 'DF', 'AM', 'AC', 'RO', 'RR', 'AP', 'TO',
+         'PA', 'MA', 'PI', 'CE', 'RN', 'PB', 'PE', 'SE', 'AL', 'BA']
+    )
