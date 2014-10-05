@@ -37,7 +37,6 @@ def get_candidates(**kwargs):
 
 @register.assignment_tag()
 def get_voting_candidate(**kwargs):
-    import ipdb; ipdb.set_trace()
     candidate = Vote.objects.get(
         election__job=kwargs.get('jobs', 'ps'),
         candidate__number=kwargs.get('number', '40')
