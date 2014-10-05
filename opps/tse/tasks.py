@@ -23,7 +23,7 @@ OPPS_TSE_CANDIDATES_PHOTOS_DIRECTORY = getattr(
 OPPS_TSE_ELECTIONS_JOBS = getattr(
     settings,
     'OPPS_TSE_ELECTIONS_JOBS',
-    ['0001', '0003', '0005', '0006', '0007', '0008']
+    ['0003', '0005', '0006', '0007', '0008']
 )
 
 OPPS_TSE_WEBSERVICE_PATH = getattr(
@@ -67,7 +67,7 @@ def populate():
     populate_candidates()
 
 
-def update_votes(states):
+def update_votes(states, jobs=OPPS_TSE_ELECTIONS_JOBS):
     """
     Parse TSE XML and get all vote count for candidates
     """
@@ -78,7 +78,7 @@ def update_votes(states):
         election_path = '00{}1'.format(election)
 
         for root, dir, files in os.walk(path):
-            for job in OPPS_TSE_ELECTIONS_JOBS:
+            for job in jobs:
                 job_label = get_job_label(job)
                 zipname = '{}-{}-e{}-v.zip'.format(slug, job, election_path)
                 logger.info('Open zip file: {}'.format(zipname))
@@ -144,7 +144,7 @@ def update_votes(states):
 
 @celery.task.periodic_task(run_every=timezone.timedelta(minutes=2))
 def update_president():
-    update_votes(['BR'])
+    update_votes(['BR'], ['0001'])
 
 
 @celery.task.periodic_task(run_every=timezone.timedelta(minutes=2))
