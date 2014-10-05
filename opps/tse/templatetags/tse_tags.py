@@ -4,7 +4,7 @@ from __future__ import unicode_literals
 from django.template import Library
 from django.core.urlresolvers import reverse
 
-from opps.tse.models import Election, Candidate
+from opps.tse.models import Election, Candidate, Vote
 
 register = Library()
 
@@ -34,6 +34,27 @@ def get_candidates(**kwargs):
         vote__election__job=kwargs.get('job', '')
     )
 
+
+@register.assignment_tag()
+def get_voting_candidate(**kwargs):
+    import ipdb; ipdb.set_trace()
+    candidate = Vote.objects.get(
+        election__job=kwargs.get('jobs', 'ps'),
+        candidate__number=kwargs.get('number', '40')
+    )
+
+    return candidate.percent
+
+
+@register.simple_tag()
+def get_channel_apuracao(**kwargs):
+    return reverse(
+        'eleicoes:apuracao-home',
+        kwargs={
+            'channel__long_slug': 'noticias/brasil/politica/eleicoes2014/'
+                                  'apuracao',
+        }
+    )
 
 @register.simple_tag()
 def get_channel_url_state(**kwargs):
