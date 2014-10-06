@@ -98,7 +98,7 @@ def update_votes(states, jobs=OPPS_TSE_ELECTIONS_JOBS):
                 else:
                     e = Election.objects.get(job=job_label, state=slug.upper())
                 e.version = xml['@nomeArquivoDadosFixos']
-                e.valid_votes = info['@votosTotalizados']
+                e.valid_votes = info['@votosValidos']
                 e.null_votes = info['@votosNulos']
                 e.blank_votes = info['@votosEmBranco']
                 e.pending_votes = info['@votosPendentes']
