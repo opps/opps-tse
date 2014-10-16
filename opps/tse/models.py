@@ -217,35 +217,42 @@ class Election(models.Model):
     @property
     def percent_valid_vote(self):
         try:
-            return float((self.valid_votes*100)/self.valid_votes)
+            return (float(self.valid_votes)*100)/float(self.total_voters)
         except:
             return 0
 
     @property
     def percent_null_vote(self):
         try:
-            return float((self.null_votes*100)/self.valid_votes)
+            return (float(self.null_votes)*100)/float(self.total_voters)
+        except:
+            return 0
+
+    @property
+    def percent_blank_vote(self):
+        try:
+            return (float(self.blank_votes)*100)/float(self.total_voters)
         except:
             return 0
 
     @property
     def percent_pending_vote(self):
         try:
-            return float((self.pending_votes*100)/self.valid_votes)
+            return (float(self.pending_votes)*100)/float(self.valid_votes)
         except:
             return 0
 
     @property
     def percent_total_attendence(self):
         try:
-            return float((self.total_attendence*100)/self.valid_votes)
+            return (float(self.total_attendence)*100)/float(self.valid_votes)
         except:
             return 0
 
     @property
     def percent_total_abstention(self):
         try:
-            return float((self.total_abstention*100)/self.valid_votes)
+            return (float(self.total_abstention)*100)/float(self.total_voters)
         except:
             return 0
 
@@ -262,7 +269,6 @@ class Election(models.Model):
 class Vote(models.Model):
     election = models.ForeignKey('Election', verbose_name=_('Election'))
     candidate = models.ForeignKey('Candidate', verbose_name=_('Candidate'))
-    appured = models.PositiveIntegerField(_('Total Appured'), default=0)
     votes = models.PositiveIntegerField(_('Total Votes'), default=0)
     turn = models.PositiveIntegerField(_('Turn'), default=1)
     is_main = models.BooleanField(
@@ -274,7 +280,7 @@ class Vote(models.Model):
     @property
     def percent(self):
         try:
-            return float((self.votes*100)/self.election.valid_votes)
+            return (float(self.votes)*100)/float(self.election.valid_votes)
         except:
             return 0
 
