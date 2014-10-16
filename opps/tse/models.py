@@ -252,14 +252,20 @@ class Election(models.Model):
     @property
     def percent_pending_vote(self):
         try:
-            return (float(self.pending_votes)*100)/float(self.valid_votes)
+            # TODO: get a fields of count appured urns
+            return (
+                float(self.pending_votes)*100
+            )/float(
+                self.valid_votes + self.blank_votes + self.null_votes
+            )
         except:
             return 0
 
     @property
     def percent_total_attendence(self):
+         # TODO: fix this calc
         try:
-            return (float(self.total_attendence)*100)/float(self.valid_votes)
+            return (float(self.total_attendence)*100)/float(self.total_voters)
         except:
             return 0
 
