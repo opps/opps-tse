@@ -217,35 +217,35 @@ class Election(models.Model):
     @property
     def percent_valid_vote(self):
         try:
-            return (self.valid_votes/self.total_voters)*100
+            return float((self.valid_votes*100)/self.valid_votes)
         except:
             return 0
 
     @property
     def percent_null_vote(self):
         try:
-            return (self.null_votes/self.total_voters)*100
+            return float((self.null_votes*100)/self.valid_votes)
         except:
             return 0
 
     @property
     def percent_pending_vote(self):
         try:
-            return (self.pending_votes/self.total_voters)*100
+            return float((self.pending_votes*100)/self.valid_votes)
         except:
             return 0
 
     @property
     def percent_total_attendence(self):
         try:
-            return (self.total_attendence/self.total_voters)*100
+            return float((self.total_attendence*100)/self.valid_votes)
         except:
             return 0
 
     @property
     def percent_total_abstention(self):
         try:
-            return (self.total_abstention/self.total_voters)*100
+            return float((self.total_abstention*100)/self.valid_votes)
         except:
             return 0
 
@@ -274,7 +274,7 @@ class Vote(models.Model):
     @property
     def percent(self):
         try:
-            return int((self.votes*100)/self.appured)
+            return float((self.votes*100)/self.election.valid_votes)
         except:
             return 0
 
