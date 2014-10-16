@@ -155,7 +155,7 @@ msgstr "Total de votos em branco"
 
 #: models.py:200
 msgid "Total Attendance"
-msgstr "Total apurado"
+msgstr "Total de comparecimento"
 
 #: models.py:205
 msgid "Total Abstention"
