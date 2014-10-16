@@ -155,12 +155,14 @@ class Election(models.Model):
     year = models.PositiveIntegerField(
         verbose_name=_('Year')
     )
+
     job = models.CharField(
         verbose_name=_('Job'),
         db_index=True,
         max_length=2,
         choices=JOBS
     )
+
     state = models.CharField(
         verbose_name=_('State'),
         max_length=2,
@@ -168,6 +170,7 @@ class Election(models.Model):
         null=True,
         db_index=True
     )
+
     version = models.CharField(
         verbose_name=_('Version'),
         max_length=100
@@ -179,16 +182,19 @@ class Election(models.Model):
         null=True,
         blank=True
     )
+
     null_votes = models.PositiveIntegerField(
         verbose_name=_('Null Votes'),
         null=True,
         blank=True
     )
+
     pending_votes = models.PositiveIntegerField(
         verbose_name=_('Pending Votes'),
         null=True,
         blank=True
     )
+
     blank_votes = models.PositiveIntegerField(
         verbose_name=_('Blank Votes'),
         null=True,
@@ -213,6 +219,14 @@ class Election(models.Model):
     )
 
     objects = ElectionManager()
+
+    def save(self, *args,  **kwargs):
+
+        self.total_attendance = (
+            self.total_voters - self.total_abstention
+        )
+
+        super(Election, self).save(**kwargs)
 
     @property
     def percent_valid_vote(self):
@@ -252,7 +266,11 @@ class Election(models.Model):
     @property
     def percent_total_abstention(self):
         try:
-            return (float(self.total_abstention)*100)/float(self.total_voters)
+            return (
+                float(self.total_abstention)*100
+            )/float(
+                self.total_voters + self.total_abstention
+            )
         except:
             return 0
 
