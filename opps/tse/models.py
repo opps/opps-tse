@@ -218,6 +218,11 @@ class Election(models.Model):
         blank=True
     )
 
+    turn = models.PositiveIntegerField(
+        verbose_name=_('Turn'),
+        default=1
+    )
+
     objects = ElectionManager()
 
     def save(self, *args,  **kwargs):
