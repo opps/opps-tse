@@ -207,11 +207,13 @@ class Election(models.Model):
         null=True,
         blank=True
     )
+
     total_abstention = models.PositiveIntegerField(
         verbose_name=_('Total Abstention'),
         null=True,
         blank=True
     )
+
     total_voters = models.PositiveIntegerField(
         verbose_name=_('Total Voters'),
         null=True,
