@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+from datetime import datetime
 from django.template import Library
 from django.core.urlresolvers import reverse
 
@@ -36,8 +37,20 @@ def get_candidates(**kwargs):
 
 
 @register.assignment_tag()
+def get_votings(year, jobs, **kwargs):
+
+    return (
+        Vote.objects.year(year)
+        .jobs(jobs)
+        .turn(
+            kwargs.get('turn', '1')
+        )
+    )
+
+
+@register.assignment_tag()
 def get_voting_candidate(**kwargs):
-    candidate = Vote.objects.get(
+    candidate = Vote.objects.year(kwargs.get('year', datetime.now().year)).get(
         election__job=kwargs.get('jobs', 'ps'),
         candidate__number=kwargs.get('number', '40')
     )
@@ -54,6 +67,7 @@ def get_channel_apuracao(**kwargs):
                                   'apuracao',
         }
     )
+
 
 @register.simple_tag()
 def get_channel_url_state(**kwargs):
