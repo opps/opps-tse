@@ -229,9 +229,10 @@ class Election(models.Model):
 
     def save(self, *args,  **kwargs):
 
-        self.total_attendance = (
-            self.total_voters - self.total_abstention
-        )
+        if self.total_voters:
+            self.total_attendance = (
+                self.total_voters - self.total_abstention
+            )
 
         super(Election, self).save(**kwargs)
 
