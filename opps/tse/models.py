@@ -309,6 +309,25 @@ class Vote(models.Model):
         verbose_name=_('Is elected?'), default=False)
     objects = VoteManager()
 
+    def get_absolute_url(self):
+        if self.election.job == 'ps':
+            return reverse(
+                'eleicoes:eleicao-resultado-presidente',
+                kwargs={
+                    'channel__long_slug': 'noticias/brasil/politica/eleicoes2014/'
+                                          'resultado-geral',
+                }
+            )
+        else:
+            return reverse(
+                'eleicoes:eleicao-resultado-estado-cargo',
+                kwargs={
+                    'channel__long_slug': 'noticias/brasil/politica/eleicoes2014/resultado-geral',
+                    'uf': self.election.state.lower(),
+                    'jobs': self.election.job,
+                }
+            )
+
     @property
     def percent(self):
         try:
