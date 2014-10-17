@@ -30,10 +30,10 @@ class PoliticalPartyAdmin(admin.ModelAdmin):
 
 class ElectionAdmin(admin.ModelAdmin):
 
-    list_filter = ['year', 'job', 'state']
+    list_filter = ['year', 'turn', 'state', 'job', ]
 
     list_display = (
-        'year', 'job', 'state',
+        'year', 'turn', 'state', 'job'
     )
 
 

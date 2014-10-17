@@ -105,6 +105,20 @@ class ElectionQueryset(models.query.QuerySet):
         """
         return self.filter(job__in=j)
 
+    def turn(self, t):
+        """
+        :param l: integer field
+        """
+        if t not in [1, 2]:
+            raise ValueError(
+                _(
+                    'Parameter was invalid!' +
+                    'Accepts 1 or 2 values.'
+                )
+            )
+
+        return self.filter(turn=t)
+
 
 class ElectionManager(models.Manager):
     def get_queryset(self):
@@ -133,6 +147,13 @@ class ElectionManager(models.Manager):
         :param j: string job at opps.tse.models.JOBS
         """
         return self.get_queryset().jobs(j)
+
+    def turn(self, t):
+        """
+        Get election by turn
+        :param t: integer field (1, 2)
+        """
+        return self.get_queryset().turn(t)
 
 
 class VoteQueryset(models.query.QuerySet):
@@ -243,15 +264,7 @@ class VoteManager(models.Manager):
         Get election by turn
         :param t: integer field (1, 2)
         """
-        if [1, 2] not in t:
-            raise ValueError(
-                _(
-                    u'Parameter was invalid!' +
-                    u'Accepts 1 or 2 values.'
-                )
-            )
-
-        return self.filter(turn=t)
+        return self.get_queryset().turn(t)
 
     def elected(self):
         return self.get_queryset().elected()

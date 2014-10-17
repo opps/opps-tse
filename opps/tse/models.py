@@ -207,24 +207,32 @@ class Election(models.Model):
         null=True,
         blank=True
     )
+
     total_abstention = models.PositiveIntegerField(
         verbose_name=_('Total Abstention'),
         null=True,
         blank=True
     )
+
     total_voters = models.PositiveIntegerField(
         verbose_name=_('Total Voters'),
         null=True,
         blank=True
     )
 
+    turn = models.PositiveIntegerField(
+        verbose_name=_('Turn'),
+        default=1
+    )
+
     objects = ElectionManager()
 
     def save(self, *args,  **kwargs):
 
-        self.total_attendance = (
-            self.total_voters - self.total_abstention
-        )
+        if self.total_voters:
+            self.total_attendance = (
+                self.total_voters - self.total_abstention
+            )
 
         super(Election, self).save(**kwargs)
 
@@ -300,6 +308,25 @@ class Vote(models.Model):
     is_elected = models.BooleanField(
         verbose_name=_('Is elected?'), default=False)
     objects = VoteManager()
+
+    def get_absolute_url(self):
+        if self.election.job == 'ps':
+            return reverse(
+                'eleicoes:eleicao-resultado-presidente',
+                kwargs={
+                    'channel__long_slug': 'noticias/brasil/politica/eleicoes2014/'
+                                          'resultado-geral',
+                }
+            )
+        else:
+            return reverse(
+                'eleicoes:eleicao-resultado-estado-cargo',
+                kwargs={
+                    'channel__long_slug': 'noticias/brasil/politica/eleicoes2014/resultado-geral',
+                    'uf': self.election.state.lower(),
+                    'jobs': self.election.job,
+                }
+            )
 
     @property
     def percent(self):
