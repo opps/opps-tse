@@ -271,7 +271,7 @@ class Election(models.Model):
 
     @property
     def percent_total_attendence(self):
-         # TODO: fix this calc
+        # TODO: fix this calc
         try:
             return (float(self.total_attendence)*100)/float(self.total_voters)
         except:
@@ -293,9 +293,9 @@ class Election(models.Model):
         verbose_name_plural = _('Elections')
 
     def __unicode__(self):
-        return "{0} {1} - {2} {3}".format(
+        return "{0} {1} - {2} {3} - {4}o. turno".format(
             _('Elections'), self.year,
-            self.get_job_display(), self.state or '')
+            self.get_job_display(), self.state or '', self.turn)
 
 
 class Vote(models.Model):
