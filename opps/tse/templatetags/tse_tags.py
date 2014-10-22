@@ -37,20 +37,10 @@ def get_candidates(**kwargs):
 
 
 @register.assignment_tag()
-def get_votings(year, jobs, **kwargs):
-
-    return (
-        Vote.objects.year(year)
-        .jobs(jobs)
-        .turn(
-            kwargs.get('turn', '1')
-        )
-    )
-
-
-@register.assignment_tag()
 def get_voting_candidate(**kwargs):
-    candidate = Vote.objects.year(kwargs.get('year', datetime.now().year)).get(
+
+    candidate = Vote.objects.year(
+        kwargs.get('year', datetime.now().year)).get(
         election__job=kwargs.get('jobs', 'ps'),
         candidate__number=kwargs.get('number', '40')
     )

@@ -91,7 +91,10 @@ class ElectionQueryset(models.query.QuerySet):
         """
         :param state: state slug
         """
-        return self.filter(state=state.upper())
+        if state:
+            return self.filter(state=state.upper())
+        else:
+            return self.filter(state='')
 
     def job(self, j):
         """
@@ -175,7 +178,10 @@ class VoteQueryset(models.query.QuerySet):
         """
         :param state: state slug
         """
-        return self.filter(election__state=state.upper())
+        if state:
+            return self.filter(election__state=state.upper())
+        else:
+            return self.filter(election__state='')
 
     def job(self, j):
         """
