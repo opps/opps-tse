@@ -179,24 +179,28 @@ class Election(models.Model):
     # global stats for votes
     valid_votes = models.PositiveIntegerField(
         verbose_name=_('Valid Votes'),
+        default=0,
         null=True,
         blank=True
     )
 
     null_votes = models.PositiveIntegerField(
         verbose_name=_('Null Votes'),
+        default=0,
         null=True,
         blank=True
     )
 
     pending_votes = models.PositiveIntegerField(
         verbose_name=_('Pending Votes'),
+        default=0,
         null=True,
         blank=True
     )
 
     blank_votes = models.PositiveIntegerField(
         verbose_name=_('Blank Votes'),
+        default=0,
         null=True,
         blank=True
     )
@@ -204,18 +208,21 @@ class Election(models.Model):
     # global stats
     total_attendance = models.PositiveIntegerField(
         verbose_name=_('Total Attendance'),
+        default=0,
         null=True,
         blank=True
     )
 
     total_abstention = models.PositiveIntegerField(
         verbose_name=_('Total Abstention'),
+        default=0,
         null=True,
         blank=True
     )
 
     total_voters = models.PositiveIntegerField(
         verbose_name=_('Total Voters'),
+        default=0,
         null=True,
         blank=True
     )
