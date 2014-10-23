@@ -151,24 +151,27 @@ def update_president():
     update_votes(['BR'], ['0001'])
 
 
-@celery.task.periodic_task(run_every=timezone.timedelta(minutes=2))
 def update_sp_region():
     update_votes(['SP'])
 
 
-@celery.task.periodic_task(run_every=timezone.timedelta(minutes=4))
 def update_southeast_region():
     update_votes(['RJ', 'MG', 'ES'])
 
 
-@celery.task.periodic_task(run_every=timezone.timedelta(minutes=4))
 def update_south_region():
     update_votes(['RS', 'PR', 'SC'])
 
 
-@celery.task.periodic_task(run_every=timezone.timedelta(minutes=6))
 def udpate_others_regions():
     update_votes(
         ['GO', 'MT', 'MS', 'DF', 'AM', 'AC', 'RO', 'RR', 'AP', 'TO',
          'PA', 'MA', 'PI', 'CE', 'RN', 'PB', 'PE', 'SE', 'AL', 'BA']
     )
+
+
+@celery.task.periodic_task(run_every=timezone.timedelta(minutes=5))
+def update_regions():
+    states = ['RJ', 'RS', 'CE', 'RN', 'PB', 'MS', 'GO', 'DF', 'RO', 'AC',
+                'AM', 'PA', 'RR', 'AP']
+    update_votes(states)
