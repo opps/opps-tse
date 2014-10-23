@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: opps-tse\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-10-03 16:27-0300\n"
+"POT-Creation-Date: 2014-10-23 00:53-0200\n"
 "PO-Revision-Date: 2014-09-24 22:00-0300\n"
 "Last-Translator:  Igor P. Leroy <ip.leroy@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/projects/p/opps-"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: managers.py:187 managers.py:249
+#: managers.py:118 managers.py:214
 msgid "Parameter was invalid!Accepts 1 or 2 values."
 msgstr "Parametro inválido! Aceita o valor 1 ou 2."
 
@@ -97,7 +97,7 @@ msgstr "Nascimento"
 msgid "Candidate Number"
 msgstr "Número do Candidato"
 
-#: models.py:92 models.py:165
+#: models.py:92 models.py:167
 msgid "State"
 msgstr "Estado"
 
@@ -117,7 +117,7 @@ msgstr "Coligação"
 msgid "Is active?"
 msgstr "Ativo?"
 
-#: models.py:130 models.py:264
+#: models.py:130 models.py:356
 msgid "Candidate"
 msgstr "Candidato"
 
@@ -129,74 +129,86 @@ msgstr "Candidatos"
 msgid "Year"
 msgstr "Ano"
 
-#: models.py:159
+#: models.py:160
 msgid "Job"
 msgstr "Cargo"
 
-#: models.py:172
+#: models.py:175
 msgid "Version"
 msgstr "Versão"
 
-#: models.py:178
+#: models.py:181
 msgid "Valid Votes"
 msgstr "Total de votos validos"
 
-#: models.py:183
+#: models.py:188
 msgid "Null Votes"
 msgstr "Total de votos nulos"
 
-#: models.py:188
+#: models.py:195
 msgid "Pending Votes"
 msgstr "Total de votos pendentes"
 
-#: models.py:193
+#: models.py:202
 msgid "Blank Votes"
 msgstr "Total de votos em branco"
 
-#: models.py:200
+#: models.py:210
 msgid "Total Attendance"
 msgstr "Total de comparecimento"
 
-#: models.py:205
+#: models.py:217
 msgid "Total Abstention"
 msgstr "Total abstenção"
 
-#: models.py:210
+#: models.py:224
 msgid "Total Voters"
 msgstr "Total de votos"
 
-#: models.py:253 models.py:263
-msgid "Election"
-msgstr "Eleição"
-
-#: models.py:254 models.py:258
-msgid "Elections"
-msgstr "Eleições"
-
-#: models.py:265
-msgid "Total Appured"
-msgstr "Total de votos apurados"
-
-#: models.py:266
-msgid "Total Votes"
-msgstr "Total de votos"
-
-#: models.py:267
+#: models.py:231 models.py:358
 msgid "Turn"
 msgstr "Turno"
 
-#: models.py:269
+#: models.py:236
+msgid "Total appured sections"
+msgstr "Total de seções apuradas"
+
+#: models.py:243
+msgid "Total not appured sections"
+msgstr "Total de seções não apuradas"
+
+#: models.py:250
+msgid "Total appured electorate"
+msgstr "Total de eleitorado apurado"
+
+#: models.py:257
+msgid "Total not appured electorates"
+msgstr "Total de eleitoarado não apurado"
+
+#: models.py:345 models.py:355
+msgid "Election"
+msgstr "Eleição"
+
+#: models.py:346 models.py:350
+msgid "Elections"
+msgstr "Eleições"
+
+#: models.py:357
+msgid "Total Votes"
+msgstr "Total de votos"
+
+#: models.py:360
 msgid "Is main?"
 msgstr "Principal?"
 
-#: models.py:271
+#: models.py:362
 msgid "Is elected?"
 msgstr "Eleito?"
 
-#: models.py:282
+#: models.py:392
 msgid "Vote"
 msgstr "Voto"
 
-#: models.py:283
+#: models.py:393
 msgid "Votes"
 msgstr "Votos"
