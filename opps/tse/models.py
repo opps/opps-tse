@@ -232,6 +232,20 @@ class Election(models.Model):
         default=1
     )
 
+    total_appured_sections = models.PositiveIntegerField(
+        verbose_name=_('Total appured sections'),
+        default=0,
+        null=True,
+        blank=True
+    )
+
+    total_not_appured_sections = models.PositiveIntegerField(
+        verbose_name=_('Total not appured sections'),
+        default=0,
+        null=True,
+        blank=True
+    )
+
     objects = ElectionManager()
 
     def save(self, *args,  **kwargs):
@@ -292,6 +306,14 @@ class Election(models.Model):
             )/float(
                 self.total_voters + self.total_abstention
             )
+        except:
+            return 0
+
+    @property
+    def percent_total_appured_section(self):
+        total = self.total_appured_sections + self.total_not_appured_sections
+        try:
+            return float((total*100)/self.total_appured_sections)
         except:
             return 0
 
