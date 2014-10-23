@@ -93,7 +93,7 @@ def update_votes(states, jobs=OPPS_TSE_ELECTIONS_JOBS):
                 xml = parse_xml(zip.open(zipname[:-4]+'.xml'))
                 info = xml['Abrangencia']
                 # set Election model
-                if job_label == 'ps':
+                if slug == 'br':
                     e = Election.objects.get(job=job_label)
                 else:
                     e = Election.objects.get(job=job_label, state=slug.upper())
