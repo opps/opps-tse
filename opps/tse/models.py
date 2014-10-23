@@ -340,7 +340,6 @@ class Election(models.Model):
         except:
             return 0
 
-
     class Meta:
         verbose_name = _('Election')
         verbose_name_plural = _('Elections')
