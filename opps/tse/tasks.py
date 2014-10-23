@@ -104,6 +104,10 @@ def update_votes(states, jobs=OPPS_TSE_ELECTIONS_JOBS):
                 e.pending_votes = info['@votosPendentes']
                 e.total_attendance = info['@comparecimento']
                 e.total_abstention = info['@abstencao']
+                e.total_appured_sections = info['@secoesTotalizadas']
+                e.total_not_appured_sections = info['@secoesNaoTotalizadas']
+                e.total_appured_electorate = info['@eleitoradoApurado']
+                e.total_not_appured_electorate = info['@eleitoradoNaoApurado']
                 e.save()
 
                 for candidate in info['VotoCandidato']:
