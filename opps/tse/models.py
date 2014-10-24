@@ -320,7 +320,7 @@ class Election(models.Model):
     def percent_total_appured_section(self):
         total = self.total_appured_sections + self.total_not_appured_sections
         try:
-            return float((total*100)/self.total_appured_sections)
+            return float((self.total_appured_sections*100)/total)
         except:
             return 0
 
@@ -329,7 +329,7 @@ class Election(models.Model):
         total = self.total_appured_electorate + \
             self.total_not_appured_electorate
         try:
-            return float((total*100)/self.total_appured_electorate)
+            return float((self.total_appured_electorate*100)/total)
         except:
             return 0
 
