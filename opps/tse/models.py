@@ -262,8 +262,6 @@ class Election(models.Model):
 
     objects = ElectionManager()
 
-
-
     @property
     def percent_valid_vote(self):
         try:
