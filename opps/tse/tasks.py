@@ -67,7 +67,7 @@ def populate():
     populate_candidates()
 
 
-def update_votes(states, jobs=OPPS_TSE_ELECTIONS_JOBS):
+def update_votes(states, jobs=OPPS_TSE_ELECTIONS_JOBS, turn=2):
     """
     Parse TSE XML and get all vote count for candidates
     """
@@ -94,9 +94,11 @@ def update_votes(states, jobs=OPPS_TSE_ELECTIONS_JOBS):
                 info = xml['Abrangencia']
                 # set Election model
                 if slug == 'br':
-                    e = Election.objects.get(job=job_label)
+                    e = Election.objects.get(
+                        job=job_label, state='', turn=turn)
                 else:
-                    e = Election.objects.get(job=job_label, state=slug.upper())
+                    e = Election.objects.get(
+                        job=job_label, state=slug.upper(), turn=turn)
                 e.version = xml['@nomeArquivoDadosFixos']
                 e.valid_votes = info['@votosValidos']
                 e.null_votes = info['@votosNulos']
@@ -149,22 +151,22 @@ def update_votes(states, jobs=OPPS_TSE_ELECTIONS_JOBS):
 
 @celery.task.periodic_task(run_every=timezone.timedelta(minutes=2))
 def update_president():
-    update_votes(['BR'], ['0001'])
+    update_votes(['BR'], ['0001'], 2)
 
 
 @celery.task.periodic_task(run_every=timezone.timedelta(minutes=2))
 def update_sp_region():
-    update_votes(['SP'], ['0001'])
+    update_votes(['SP'], ['0001'], 2)
 
 
 @celery.task.periodic_task(run_every=timezone.timedelta(minutes=3))
 def update_southeast_region():
-    update_votes(['RJ', 'MG', 'ES'], ['0001'])
+    update_votes(['RJ', 'MG', 'ES'], ['0001'], 2)
 
 
 @celery.task.periodic_task(run_every=timezone.timedelta(minutes=3))
 def update_south_region():
-    update_votes(['RS', 'PR', 'SC'], ['0001'])
+    update_votes(['RS', 'PR', 'SC'], ['0001'], 2)
 
 
 @celery.task.periodic_task(run_every=timezone.timedelta(minutes=3))
@@ -172,7 +174,7 @@ def udpate_others_regions():
     update_votes(
         ['GO', 'MT', 'MS', 'DF', 'AM', 'AC', 'RO', 'RR', 'AP', 'TO',
          'PA', 'MA', 'PI', 'CE', 'RN', 'PB', 'PE', 'SE', 'AL', 'BA'],
-        ['0001']
+        ['0001'], 2
     )
 
 
@@ -180,4 +182,4 @@ def udpate_others_regions():
 def update_regions():
     states = ['RJ', 'RS', 'CE', 'RN', 'PB', 'MS', 'GO', 'DF', 'RO', 'AC',
               'AM', 'PA', 'RR', 'AP']
-    update_votes(states, ['0003'])
+    update_votes(states, ['0003'], 2)
