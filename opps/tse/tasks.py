@@ -108,6 +108,7 @@ def update_votes(states, jobs=OPPS_TSE_ELECTIONS_JOBS):
                 e.total_not_appured_sections = info['@secoesNaoTotalizadas']
                 e.total_appured_electorate = info['@eleitoradoApurado']
                 e.total_not_appured_electorate = info['@eleitoradoNaoApurado']
+                e.total_voters = info['@votosTotalizados']
                 e.save()
 
                 for candidate in info['VotoCandidato']:
@@ -174,8 +175,9 @@ def udpate_others_regions():
         ['0001']
     )
 
+
 @celery.task.periodic_task(run_every=timezone.timedelta(minutes=5))
 def update_regions():
     states = ['RJ', 'RS', 'CE', 'RN', 'PB', 'MS', 'GO', 'DF', 'RO', 'AC',
-                'AM', 'PA', 'RR', 'AP']
+              'AM', 'PA', 'RR', 'AP']
     update_votes(states, ['0003'])
