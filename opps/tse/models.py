@@ -262,15 +262,6 @@ class Election(models.Model):
 
     objects = ElectionManager()
 
-    def save(self, *args,  **kwargs):
-
-        if self.total_voters:
-            self.total_attendance = (
-                self.total_voters - self.total_abstention
-            )
-
-        super(Election, self).save(**kwargs)
-
     @property
     def percent_valid_vote(self):
         try:
@@ -339,7 +330,6 @@ class Election(models.Model):
             return float((total*100)/self.total_appured_electorate)
         except:
             return 0
-
 
     class Meta:
         verbose_name = _('Election')
