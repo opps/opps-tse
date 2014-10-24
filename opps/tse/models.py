@@ -262,10 +262,7 @@ class Election(models.Model):
 
     objects = ElectionManager()
 
-    def save(self, *args,  **kwargs):
-        """
-        """
-        super(Election, self).save(**kwargs)
+
 
     @property
     def percent_valid_vote(self):
