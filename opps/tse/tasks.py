@@ -1,4 +1,9 @@
-# -*- coding:utf-8 -*-
+"""
+
+EXAMPLES OF TASKS USING CELERY
+
+======
+
 from __future__ import unicode_literals
 
 import os
@@ -59,18 +64,12 @@ def populate_party():
 
 
 def populate():
-    """
-    Populate database
-    """
     populate_party()
     populate_jobs()
     populate_candidates()
 
 
 def update_votes(states, jobs=OPPS_TSE_ELECTIONS_JOBS, turn=2):
-    """
-    Parse TSE XML and get all vote count for candidates
-    """
     for slug in states:
         slug = slug.lower()
         path = OPPS_TSE_WEBSERVICE_PATH + slug
@@ -183,3 +182,4 @@ def update_regions():
     states = ['RJ', 'RS', 'CE', 'RN', 'PB', 'MS', 'GO', 'DF', 'RO', 'AC',
               'AM', 'PA', 'RR', 'AP']
     update_votes(states, ['0003'], 2)
+"""
